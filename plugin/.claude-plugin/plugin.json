@@ -1,0 +1,13 @@
+{
+  "name": "dylan",
+  "version": "0.1.0",
+  "description": "Dylan for Claude Code: its tools, its method as skills, and the dylan command for work at volume \u2014 research, sourcing, copy, sending and replies.",
+  "author": {
+    "name": "Dylan",
+    "url": "https://meetdylan.ai"
+  },
+  "homepage": "https://meetdylan.ai",
+  "keywords": ["outbound", "sales", "email", "linkedin", "prospecting"],
+  "icon": ".claude-plugin/icon.png",
+  "privacyPolicyUrl": "https://meetdylan.ai/privacy"
+}

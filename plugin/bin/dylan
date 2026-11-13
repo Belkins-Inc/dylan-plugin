@@ -1,0 +1,46 @@
+#!/bin/sh
+# dylan — Dylan's tools from the command line, on the PATH of the agent's shell while the plugin is
+# on. The command is TypeScript run as it is by Node 22.18 or newer, with nothing to install or
+# build: cli/ beside bin/ in the published plugin, packages/dylan in Dylan's own repository.
+# DYLAN_CLI overrides the path.
+set -e
+
+script=$0
+while [ -L "$script" ]; do
+  link=$(readlink "$script")
+  case $link in
+  /*) script=$link ;;
+  *) script=$(dirname "$script")/$link ;;
+  esac
+done
+plugin=$(cd "$(dirname "$script")/.." && pwd)
+
+if [ -n "${DYLAN_CLI:-}" ]; then
+  cli=$DYLAN_CLI
+elif [ -f "$plugin/cli/cli.ts" ]; then
+  cli=$plugin/cli/cli.ts
+else
+  cli=$plugin/../../packages/dylan/src/cli.ts
+fi
+if [ ! -f "$cli" ]; then
+  echo "dylan: the command is missing from this plugin ($cli)" >&2
+  echo "hint: reinstall the plugin" >&2
+  exit 2
+fi
+
+if ! command -v node >/dev/null 2>&1; then
+  echo "dylan: Node.js is not installed" >&2
+  echo "hint: install Node.js 22.18 or newer from https://nodejs.org, then run the command again" >&2
+  exit 2
+fi
+version=$(node -p 'process.versions.node')
+major=${version%%.*}
+minor=${version#*.}
+minor=${minor%%.*}
+if [ "$major" -lt 22 ] || { [ "$major" -eq 22 ] && [ "$minor" -lt 18 ]; }; then
+  echo "dylan: Node.js $version is too old" >&2
+  echo "hint: install Node.js 22.18 or newer from https://nodejs.org" >&2
+  exit 2
+fi
+
+exec node --disable-warning=ExperimentalWarning "$cli" "$@"

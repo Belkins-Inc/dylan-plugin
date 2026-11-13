@@ -1,0 +1,15 @@
+{
+  "name": "dylan",
+  "owner": {
+    "name": "Dylan",
+    "url": "https://meetdylan.ai"
+  },
+  "description": "Dylan's plugin for Claude Code: an outbound engine your agent works through.",
+  "plugins": [
+    {
+      "name": "dylan",
+      "source": "./plugin",
+      "description": "Dylan's tools, its method as skills, and the dylan command for work at volume."
+    }
+  ]
+}
