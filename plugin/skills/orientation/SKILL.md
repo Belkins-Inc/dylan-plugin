@@ -35,7 +35,7 @@ Never assume an earlier session did or did not do something: read it.
 | Decisions | Settled. Do not reopen without new evidence; if you do, supersede the note (below). |
 | Insights and feedback | What worked, what the person said. Read before copy, segments and triage. |
 | Open tasks | Work Dylan or a person asked for. If one is done, close it with `close_task` and a note of what you saw. |
-| Queues | Replies to triage, drafts waiting for approval, steps with no copy, leads that cannot move. |
+| Queues | Replies to triage, drafts waiting for approval, positive threads gone quiet (`positiveToChase`), due "not now" follow-ups (`followUpsDue`), past-due meetings to settle (`meetingsToSettle`), steps with no copy, leads that cannot move. |
 | Channels | Mailboxes and LinkedIn accounts with a problem: sending and reading stop for that channel until the person fixes it. |
 | Last sessions | The last hand-overs: pick up what was left, check what was flagged to watch. |
 
