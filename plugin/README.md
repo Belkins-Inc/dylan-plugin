@@ -53,15 +53,6 @@ dylan --help
 In a script or a scheduled job, set `DYLAN_API_KEY` to a key made in Dylan's app instead of
 signing in.
 
-## Other agents
-
-The plugin is for Claude Code. Any other agent connects to Dylan's MCP server,
-`https://mcp.meetdylan.ai/mcp`; the Home screen of [Dylan's app](https://app.meetdylan.ai) has the
-steps for each. For one that reads neither MCP prompts nor a plugin, paste
-[instructions/AGENTS.md](instructions/AGENTS.md) into its own instructions file (`AGENTS.md`,
-`GEMINI.md`, a Cursor rule): it names each guide and where to read it. The same text is at
-`https://mcp.meetdylan.ai/guides/AGENTS.md`.
-
 ## Updates
 
 `/plugin marketplace update dylan` brings the latest skills and command.
