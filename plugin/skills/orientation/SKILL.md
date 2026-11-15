@@ -53,7 +53,7 @@ there is: positive answers go cold.
 
 | Job | Tools | Guide |
 | --- | --- | --- |
-| Orientation and memory | `list_projects`, `get_brief`, `get_setup`, `get_dashboard`, `get_spend`, `get_behaviour`, `list_tasks`, `open_task`, `close_task`, `add_note`, `ask_question`, `answer_question`, `add_hypothesis`, `update_hypothesis`, `end_session` | this one |
+| Orientation and memory | `list_projects`, `get_brief`, `get_setup`, `get_dashboard`, `get_spend`, `get_wallet`, `get_behaviour`, `list_tasks`, `open_task`, `close_task`, `add_note`, `ask_question`, `answer_question`, `add_hypothesis`, `update_hypothesis`, `end_session` | this one |
 | The project's set-up | `get_setup`, `set_time_zone`, `list_people`, `set_owner`, `set_goal` | this one |
 | What the company sells | `get_brief`, `save_brief`, `add_note`, `add_exclusion`, `add_dnc`, `list_dnc`, `ask_question` | `company-brief` |
 | Senders and channels | `list_senders`, `add_sender`, `update_sender`, `list_mailboxes`, `connect_mailbox`, `connect_smtp_mailbox`, `update_mailbox`, `get_warmup`, `set_warmup`, `list_linkedin_accounts`, `connect_linkedin` | `sending-setup`, `sender-signatures` |
@@ -77,7 +77,9 @@ first, in one or two lines, and wait for a yes.
 - **Spends money**: the paid search and lookup tools, `collect_emails`, `verify_email`,
   `check_address`, `read_page`, `buy_domains`, `order_mailboxes`, `set_warmup`. Each tool's description gives its
   price, and `quote_data` (free) gives the most a data call will cost for so many results; quote
-  from them, never from memory. `get_spend` shows what was spent.
+  from them, never from memory. `get_spend` shows what was spent; `get_wallet` the balance, what
+  is held costs a day, how many days it lasts and automatic top-up. Topping up, saving a card and
+  setting automatic top-up are a person's, on the app's Wallet page: say so, do not try.
 - **Writes to people**: `launch_strategy`, `approve_reply`, `book_meeting`, `cancel_meeting`,
   `reengage`, `refer`, `replace_address`, `unpause_lead`, `enroll_leads` on an active strategy.
 - **Cannot be undone**: `stop_lead`, `erase_person` (an admin's act: it forgets a person who asked
