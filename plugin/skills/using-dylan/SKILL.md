@@ -1,23 +1,27 @@
 ---
-name: working-in-files
-description: How to do Dylan's work at volume from the terminal with the dylan command — importing a CSV or list the person gave, saving or judging hundreds of companies and contacts, reading every page of companies, leads or the inbox into a file, and computing over big answers without pasting them into the conversation. Use whenever the input is a file, more than about a hundred rows go in or come out, or a list has more than one page; also to sign the command line in (dylan login).
+name: using-dylan
+description: How to run Dylan's tools from Claude Code with the dylan command — signing in (dylan login), reading and changing a project (brief, segments, strategies, leads, inbox), importing a CSV or list the person gave, saving or judging hundreds of companies and contacts, reading every page of a list into a file, and asking the person before anything that launches, sends, buys or spends. Use whenever you work on the person's Dylan projects, before any other Dylan skill's first tool.
 ---
 
-# Working in files
+# Using Dylan
 
-Dylan's tools reach you two ways, and they are the same tools: the same names, fields, answers and
-refusals.
+Every tool the other Dylan skills name (`get_brief`, `save_companies`, `list_leads`,
+`launch_strategy` …) runs through the `dylan` command in the terminal:
 
-- **The tools in your tool list** (Dylan's connection): one call, its answer in the conversation.
-  Use them for what you need to read or show: the brief, one strategy, one thread, a reply.
-- **`dylan` in the terminal**: the same tool as `dylan call <tool> name=value …`, with three things
-  a tool call cannot do: read rows from a file and send them in batches, read every page of a list
-  in one go, and write the answer to a file instead of the conversation.
+```sh
+dylan call get_brief project=acme
+```
 
-The guides name tools by their names (`save_companies`, `list_leads`); a call either way is the
-same call. Everything a guide says about a tool holds for both.
+`dylan tools` lists every tool and whether it reads, writes or asks the person first; `dylan tool
+<name>` gives one tool's fields, limits and price. The answer comes back as JSON; refusals come
+with what to do. What a skill says about a tool holds as written: only the way of calling it is
+this command.
 
-## When to use the terminal
+For a short read or a single change, call it and read the answer. For volume, the command does
+what a single call cannot: read rows from a file and send them in batches, read every page of a
+list in one go, and write the answer to a file instead of the conversation.
+
+## When to work in files
 
 - The input is a file: a CSV or spreadsheet export the person gave, a list of domains, rows you
   built in a script.
@@ -32,11 +36,11 @@ Keep each project's files in one folder (`./dylan/<project>/`), named for what t
 
 ## Signing in
 
-`dylan whoami` says who is signed in and into which organisation. Nobody: run `dylan login`. It
-prints a link and opens the browser; the person signs in and picks the organisation, and the
-command waits up to ten minutes for them (give it that long). This sign-in is the command line's
-own, apart from the tool connection's. A script with nobody to sign in uses `DYLAN_API_KEY`, a key
-the person makes in Dylan's app.
+`dylan whoami` says who is signed in and into which organisation; run it first in a session.
+Nobody: run `dylan login`. It prints a link and opens the browser; the person signs in with their
+work email and picks the organisation, and the command waits up to ten minutes for them (give it
+that long). A script with nobody to sign in uses `DYLAN_API_KEY`, a key the person makes in
+Dylan's app.
 
 ## The commands
 

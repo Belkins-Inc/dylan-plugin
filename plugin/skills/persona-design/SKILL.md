@@ -3,6 +3,8 @@ name: persona-design
 description: Defines who to write to inside a target company. The project's persona library (a name, job titles, excluded titles, a description), counted before it is saved, and each strategy's ladder of personas with its per-company caps. Use when a project has no personas, when a strategy needs people the library does not cover, when people searches return the wrong roles, or when setting which personas a strategy reaches and how many per company.
 ---
 
+> In Claude Code, run every tool this skill names with the `dylan` command: `dylan call <tool> name=value`, its fields in `dylan tool <tool>`, signing in with `dylan login` (the `using-dylan` skill).
+
 # Persona design
 
 A **persona is a named set of job titles** that people are searched and judged by. Personas live in

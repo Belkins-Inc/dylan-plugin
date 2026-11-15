@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "dylan": {
-      "type": "http",
-      "url": "https://mcp.meetdylan.ai/mcp"
-    }
-  }
-}

@@ -3,6 +3,8 @@ name: sender-signatures
 description: Writes a sender's email signature, the plain-text one every email carries and an optional HTML one with links and a layout for answers in a thread, and sets it when the sender is added. Use when a sender has no signature, when the person hands over a signature to reproduce (a screenshot, an HTML file, a description), or when a signature shows raw links.
 ---
 
+> In Claude Code, run every tool this skill names with the `dylan` command: `dylan call <tool> name=value`, its fields in `dylan tool <tool>`, signing in with `dylan login` (the `using-dylan` skill).
+
 # Sender signatures
 
 Every email carries its sender's signature after the body. A sender has two:

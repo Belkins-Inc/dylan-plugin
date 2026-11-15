@@ -3,6 +3,8 @@ name: strategy-and-plans
 description: Builds a strategy (segments x personas x what we say x how we send) on what the person approved. Its brief and angles, channels chosen from evidence, plan templates and their steps, whether the senders can carry the goal, enrolling leads with a dry run first, getting it ready for the person to launch, and keeping it full and healthy afterwards. Use when creating or changing a strategy, setting plans, enrolling contacts, preparing a launch, or when a task says a strategy is below its target or unhealthy.
 ---
 
+> In Claude Code, run every tool this skill names with the `dylan` command: `dylan call <tool> name=value`, its fields in `dylan tool <tool>`, signing in with `dylan login` (the `using-dylan` skill).
+
 # Strategy and plans
 
 A strategy picks segments and personas (in priority order, with an angle per persona), says what we

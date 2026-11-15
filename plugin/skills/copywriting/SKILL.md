@@ -3,6 +3,8 @@ name: copywriting
 description: Writes the copy of every step of every enrolled lead's plan (emails, LinkedIn invitation notes and messages), including follow-ups with leads who said "not now" and colleagues they referred. Reads the queue (copy_queue), writes one lead's plan as one story, checks a whole batch (check_copy) and writes it (write_copy), with a sample the person approves first. Use whenever a strategy has messages that need copy, after enrolling, when a lead is stuck for want of copy, or when a follow-up or referral waits for its first message.
 ---
 
+> In Claude Code, run every tool this skill names with the `dylan` command: `dylan call <tool> name=value`, its fields in `dylan tool <tool>`, signing in with `dylan login` (the `using-dylan` skill).
+
 # Copywriting
 
 Copy is written for **one named person**, every step up front at enrolment, so the person can

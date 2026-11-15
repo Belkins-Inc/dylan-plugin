@@ -3,6 +3,8 @@ name: email-finding
 description: Finds and verifies work email addresses for the people a strategy will write to. Who needs one, holding out incomplete names, finding addresses in batches (find_emails, then collect_emails), verifying every address before it is used (verify_email), what each address status means, and what to do with catch-all, unknown and bounced addresses. Use when contacts need addresses or an address's status is in doubt.
 ---
 
+> In Claude Code, run every tool this skill names with the `dylan` command: `dylan call <tool> name=value`, its fields in `dylan tool <tool>`, signing in with `dylan login` (the `using-dylan` skill).
+
 # Finding and verifying addresses
 
 **Email goes only to an address a check called deliverable.** Nothing is sent to an address nobody

@@ -3,6 +3,8 @@ name: segment-design
 description: Defines and works a segment. Which companies to look for (a definition and criteria, never people), where to find them (sources), how big the market is by free counts and whether it carries the meeting goal, the proposal the person approves before any money is spent, and which companies found qualify, with the signal copy is written from. Use when opening a new market, adding or changing a source, sizing a market, or judging companies found for a segment.
 ---
 
+> In Claude Code, run every tool this skill names with the `dylan` command: `dylan call <tool> name=value`, its fields in `dylan tool <tool>`, signing in with `dylan login` (the `using-dylan` skill).
+
 # Segment design
 
 A **segment is which companies**: the test every company must pass, wherever it was found. Its

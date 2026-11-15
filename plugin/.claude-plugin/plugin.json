@@ -1,7 +1,7 @@
 {
   "name": "dylan",
-  "version": "0.1.1",
-  "description": "Dylan for Claude Code: its tools, its method as skills, and the dylan command for work at volume \u2014 research, sourcing, copy, sending and replies.",
+  "version": "0.1.2",
+  "description": "Dylan for Claude Code: its method as skills and the dylan command that runs every tool \u2014 research, sourcing, copy, sending and replies.",
   "author": {
     "name": "Dylan",
     "url": "https://meetdylan.ai"

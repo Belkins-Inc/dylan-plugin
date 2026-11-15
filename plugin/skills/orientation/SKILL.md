@@ -3,6 +3,8 @@ name: orientation
 description: Start here, in every working session on a project. Picks the project, reads its state with get_brief, decides what to do first, keeps the project's memory with add_note and hands over with end_session. Also lists which tool does which job and which tools need the person's yes. Use at the start of any session, whenever the state of a project is in doubt, and before you stop.
 ---
 
+> In Claude Code, run every tool this skill names with the `dylan` command: `dylan call <tool> name=value`, its fields in `dylan tool <tool>`, signing in with `dylan login` (the `using-dylan` skill).
+
 # Orientation
 
 Dylan is an outbound engine: it holds the project's record, sends email and LinkedIn steps, reads

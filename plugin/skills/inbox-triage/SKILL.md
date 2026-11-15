@@ -3,6 +3,8 @@ name: inbox-triage
 description: Works a project's inbox. Confirms or corrects the class Dylan gave each reply, drafts answers for the person to approve, turns "not now" into a dated follow-up and referrals into new leads, closes what needs nothing, and books meetings. Use when replies are waiting (the brief shows replies to triage or drafts to approve), when asked to check or work the inbox, and whenever a lead wants to meet.
 ---
 
+> In Claude Code, run every tool this skill names with the `dylan` command: `dylan call <tool> name=value`, its fields in `dylan tool <tool>`, signing in with `dylan login` (the `using-dylan` skill).
+
 # Inbox triage
 
 Dylan has acted on every reply before you see it. Any reply a person wrote stopped the lead's

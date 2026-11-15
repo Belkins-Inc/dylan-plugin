@@ -3,6 +3,8 @@ name: sourcing
 description: Finds the companies of an approved segment and the people inside them. Counts first (free), searches a page at a time from where the last search stopped, records every search with its cost, saves and judges companies, keeps only the people who fit a persona, and reads company sites and directories for the facts and signals copy needs. Use when a segment needs companies, a strategy needs people at qualified companies, or a company cannot be judged from what is stored.
 ---
 
+> In Claude Code, run every tool this skill names with the `dylan` command: `dylan call <tool> name=value`, its fields in `dylan tool <tool>`, signing in with `dylan login` (the `using-dylan` skill).
+
 # Sourcing
 
 Sourcing spends money, so it runs only on a segment the person approved (`segment-design`,

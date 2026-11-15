@@ -3,6 +3,8 @@ name: results-review
 description: Reads how the outbound is doing and turns it into a review for the person and their team (weekly, monthly or at a milestone). The figures against the goal, what worked by persona, segment, channel and angle, each strategy's health, what was spent, and what to change next. Use when asked "how are we doing", for a results update or report, before changing a strategy, or when a task says a strategy is unhealthy.
 ---
 
+> In Claude Code, run every tool this skill names with the `dylan` command: `dylan call <tool> name=value`, its fields in `dylan tool <tool>`, signing in with `dylan login` (the `using-dylan` skill).
+
 # Results review
 
 Dylan keeps the numbers; the review turns them into what a person acts on: what was done,

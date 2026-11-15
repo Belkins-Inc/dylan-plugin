@@ -3,6 +3,8 @@ name: company-brief
 description: Turns what the person tells you and gives you (their website, deck, price list, customer stories, ideal-customer and exclusion lists, the outreach they already ran) plus your own research on their market into the brief every later step is written from, and into the project's checkable memory (rules, decisions, do-not-contact). Use when a project is new, when its brief is thin, when new material arrives, and when the company changes what it wants.
 ---
 
+> In Claude Code, run every tool this skill names with the `dylan` command: `dylan call <tool> name=value`, its fields in `dylan tool <tool>`, signing in with `dylan login` (the `using-dylan` skill).
+
 # Company brief
 
 The brief is what segments, personas and copy are written from. It holds two kinds of statement

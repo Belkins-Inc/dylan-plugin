@@ -3,6 +3,8 @@ name: sending-setup
 description: Gets a project ready to send and keeps its senders healthy. Senders, connecting the person's own Google or Microsoft mailboxes and LinkedIn accounts, buying lookalike domains and ordering mailboxes on them, warm-up, daily limits, and what Dylan does when a domain's mail starts landing in spam. Use on a new project (get_setup shows what is missing), when more sending capacity is needed, and when a mailbox or account shows a problem.
 ---
 
+> In Claude Code, run every tool this skill names with the `dylan` command: `dylan call <tool> name=value`, its fields in `dylan tool <tool>`, signing in with `dylan login` (the `using-dylan` skill).
+
 # Sending set-up
 
 `get_setup` lists what a project still needs before it can send, each step done or not. Work down
