@@ -60,7 +60,7 @@ there is: positive answers go cold.
 | Domains and mailboxes to buy | `list_domains`, `quote_domains`, `buy_domains`, `get_company_details`, `set_company_details`, `get_google_organisation`, `set_google_organisation`, `get_microsoft_tenant`, `accept_microsoft_agreement`, `leave_microsoft_tenant`, `order_mailboxes` | `sending-setup` |
 | Which companies | `list_segments`, `save_segment`, `list_sources`, `save_source`, `list_segment_companies`, `save_companies`, `judge_companies` | `segment-design` |
 | Which people | `list_personas`, `save_persona` | `persona-design` |
-| Finding them | `count_companies`, `search_companies`, `count_people`, `search_people`, `enrich_profile`, `read_page`, `record_search`, `get_provider_call`, `save_contacts`, `list_contacts` | `sourcing` |
+| Finding them | `count_companies`, `search_companies`, `count_people`, `search_people`, `enrich_profile`, `read_page`, `quote_data`, `record_search`, `get_provider_call`, `save_contacts`, `list_contacts` | `sourcing` |
 | Addresses | `find_emails`, `collect_emails`, `verify_email`, `check_address`, `replace_address` | `email-finding` |
 | Strategies and plans | `list_strategies`, `get_strategy`, `create_strategy`, `update_strategy`, `set_plans`, `stand_contacts`, `enroll_leads`, `launch_strategy`, `pause_strategy`, `list_leads`, `get_lead`, `pause_lead`, `unpause_lead`, `stop_lead` | `strategy-and-plans` |
 | Copy | `copy_queue`, `check_copy`, `write_copy`, `list_copy`, `preview_message` | `copywriting` |
@@ -76,7 +76,8 @@ first, in one or two lines, and wait for a yes.
 
 - **Spends money**: the paid search and lookup tools, `collect_emails`, `verify_email`,
   `check_address`, `read_page`, `buy_domains`, `order_mailboxes`, `set_warmup`. Each tool's description gives its
-  price; quote it from there, never from memory. `get_spend` shows what was spent.
+  price, and `quote_data` (free) gives the most a data call will cost for so many results; quote
+  from them, never from memory. `get_spend` shows what was spent.
 - **Writes to people**: `launch_strategy`, `approve_reply`, `book_meeting`, `cancel_meeting`,
   `reengage`, `refer`, `replace_address`, `unpause_lead`, `enroll_leads` on an active strategy.
 - **Cannot be undone**: `stop_lead`, `erase_person` (an admin's act: it forgets a person who asked

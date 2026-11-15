@@ -6,8 +6,8 @@ description: Finds the companies of an approved segment and the people inside th
 # Sourcing
 
 Sourcing spends money, so it runs only on a segment the person approved (`segment-design`,
-"Propose, then stop"). Every paid tool states its price in its description; quote it from there
-before a batch, and tell the person what the batch will cost.
+"Propose, then stop"). Every paid tool states its price in its description, and `quote_data` (free)
+gives the most a batch can cost; quote it before a batch, and tell the person what it will cost.
 
 ## Read first
 
