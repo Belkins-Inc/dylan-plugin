@@ -1,10 +1,11 @@
 import { bearer } from './auth.ts'
 import { DylanError } from './errors.ts'
+import { fetchWithin, QUICK_MS, TOOL_MS } from './net.ts'
 
 // Dylan's public API: the same tools as its MCP server, one POST each, the same answers and the
 // same refusals ({ error: { code, message, hint } }).
 
-export const VERSION = '0.1.2'
+export const VERSION = '0.1.3'
 
 /** A JSON Schema, as far as this command line reads one. */
 export type Schema = {
@@ -37,8 +38,9 @@ type Refusal = { code?: string; message?: string; hint?: string }
 
 async function send(server: string, method: string, path: string, body: unknown, renew: boolean) {
   const token = await bearer(server, renew)
-  try {
-    return await fetch(`${server}${path}`, {
+  return fetchWithin(
+    `${server}${path}`,
+    {
       method,
       headers: {
         authorization: `Bearer ${token}`,
@@ -47,13 +49,10 @@ async function send(server: string, method: string, path: string, body: unknown,
         ...(body === undefined ? {} : { 'content-type': 'application/json' }),
       },
       ...(body === undefined ? {} : { body: JSON.stringify(body) }),
-    })
-  } catch (error) {
-    throw new DylanError(
-      `Cannot reach ${server}: ${(error as Error).message}`,
-      'Check the connection, then run the command again',
-    )
-  }
+    },
+    // A tool's call may take minutes; the rest of the API answers at once.
+    path.startsWith('/v1/tools/') ? TOOL_MS : QUICK_MS,
+  )
 }
 
 /** One request as the signed-in person; a refused token is renewed once and the call repeated. */

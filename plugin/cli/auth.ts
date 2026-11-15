@@ -5,6 +5,7 @@ import type { AddressInfo } from 'node:net'
 
 import { type Credential, credentialFor, saveCredential, withLock } from './config.ts'
 import { DylanError } from './errors.ts'
+import { fetchWithin, QUICK_MS } from './net.ts'
 
 // Signing in: OAuth 2.1 with PKCE in the person's browser, the code coming back to a port on this
 // machine (RFC 8252). The client is Dylan's own command line, named by the metadata document the
@@ -31,15 +32,12 @@ type TokenAnswer = {
 }
 
 async function metadataOf(server: string): Promise<ServerMetadata> {
-  let res: Response
-  try {
-    res = await fetch(`${server}/.well-known/oauth-authorization-server`)
-  } catch (error) {
-    throw new DylanError(
-      `Cannot reach ${server}: ${(error as Error).message}`,
-      'Check the connection, or DYLAN_URL if it is set',
-    )
-  }
+  const res = await fetchWithin(
+    `${server}/.well-known/oauth-authorization-server`,
+    {},
+    QUICK_MS,
+    'Check the connection, or DYLAN_URL if it is set',
+  )
   if (!res.ok)
     throw new DylanError(
       `${server} answered ${res.status} where Dylan's sign-in should be`,
@@ -52,11 +50,15 @@ const base64url = (bytes: Buffer) => bytes.toString('base64url')
 
 /** Posts a form to the token endpoint; an OAuth refusal becomes a DylanError. */
 async function tokenRequest(endpoint: string, fields: Record<string, string>) {
-  const res = await fetch(endpoint, {
-    method: 'POST',
-    headers: { 'content-type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams(fields).toString(),
-  })
+  const res = await fetchWithin(
+    endpoint,
+    {
+      method: 'POST',
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(fields).toString(),
+    },
+    QUICK_MS,
+  )
   const body = (await res.json().catch(() => ({}))) as Partial<TokenAnswer> & {
     error?: string
     error_description?: string
@@ -205,15 +207,19 @@ export async function logout(server: string) {
   const credential = await credentialFor(server)
   if (!credential) return false
   if (credential.revocationEndpoint)
-    await fetch(credential.revocationEndpoint, {
-      method: 'POST',
-      headers: { 'content-type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({
-        token: credential.refreshToken,
-        token_type_hint: 'refresh_token',
-        client_id: credential.clientId,
-      }).toString(),
-    }).catch(() => {})
+    await fetchWithin(
+      credential.revocationEndpoint,
+      {
+        method: 'POST',
+        headers: { 'content-type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          token: credential.refreshToken,
+          token_type_hint: 'refresh_token',
+          client_id: credential.clientId,
+        }).toString(),
+      },
+      QUICK_MS,
+    ).catch(() => {})
   await withLock(() => saveCredential(server, null))
   return true
 }

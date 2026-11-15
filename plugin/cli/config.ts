@@ -1,4 +1,4 @@
-import { chmod, mkdir, open, readFile, rename, rm, writeFile } from 'node:fs/promises'
+import { chmod, mkdir, open, readFile, rename, rm, stat, writeFile } from 'node:fs/promises'
 import { homedir } from 'node:os'
 import { join } from 'node:path'
 
@@ -60,12 +60,24 @@ export async function saveCredential(server: string, credential: Credential | nu
   await writeStore(store)
 }
 
+/** When the lock was taken: the time written in it, else the file's; null when it is gone. */
+async function lockedSince(lock: string): Promise<number | null> {
+  const written = Number(await readFile(lock, 'utf8').catch(() => ''))
+  if (written) return written
+  try {
+    return (await stat(lock)).mtimeMs
+  } catch {
+    return null
+  }
+}
+
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 /**
  * Runs `work` while holding the credentials' lock, so two commands never renew the same refresh
  * token: the server takes each one once, and a second use of it signs the person out everywhere.
- * A lock older than a minute is a crashed command's and is taken over.
+ * A lock older than a minute is a crashed command's and is taken over — one left empty too (a
+ * command that crashed between making it and writing its time), aged by the file's own time.
  */
 export async function withLock<T>(work: () => Promise<T>): Promise<T> {
   await mkdir(configDir(), { recursive: true, mode: 0o700 })
@@ -79,8 +91,9 @@ export async function withLock<T>(work: () => Promise<T>): Promise<T> {
       break
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code !== 'EEXIST') throw error
-      const since = Number(await readFile(lock, 'utf8').catch(() => '0'))
-      if (since && Date.now() - since > 60_000) await rm(lock, { force: true })
+      const since = await lockedSince(lock)
+      if (since === null) continue
+      if (Date.now() - since > 60_000) await rm(lock, { force: true })
       else if (Date.now() > deadline)
         throw new DylanError(
           'Another dylan command is holding the sign-in',

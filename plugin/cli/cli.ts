@@ -236,6 +236,9 @@ async function call(server: string, name: string, args: string[], flags: Flags) 
   if (failure) throw failure
 }
 
+/** The commands main knows; the skills' test checks every `dylan …` they show against it. */
+export const COMMANDS = ['login', 'logout', 'whoami', 'tools', 'tool', 'call', 'help'] as const
+
 export async function main(argv: string[]) {
   const { flags, rest } = parseArgs(argv)
   const [command, ...args] = rest
