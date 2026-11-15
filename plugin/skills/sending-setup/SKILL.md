@@ -43,8 +43,8 @@ email goes from lookalike domains that redirect to the company's site, a few mai
    whether it is on a blocklist or carries a past owner's abuse record (those are not offered).
    Drop what is taken and quote replacements.
 2. Show the person the names, the yearly price per name from the quote and the total. **They
-   approve the purchase**; then `buy_domains` with `maxCents` set to the total the quote gave, never
-   more, and `redirectTo` set to the company's real site (a domain that opens nothing reads as
+   approve the purchase**; then `buy_domains` with `maxCents` set to the highest yearly price the
+   quote gave, never more (a premium name, or one above $15, is not bought), and `redirectTo` set to the company's real site (a domain that opens nothing reads as
    abandoned). The wallet pays; a wallet that cannot carry it refuses the whole batch and buys
    nothing.
 3. Dylan registers the domains, writes their DNS (SPF, DKIM, DMARC) and the redirect on its
