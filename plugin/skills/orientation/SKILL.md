@@ -51,7 +51,7 @@ there is: positive answers go cold.
 | Orientation and memory | `list_projects`, `get_brief`, `get_setup`, `get_dashboard`, `get_spend`, `get_behaviour`, `list_tasks`, `close_task`, `add_note`, `end_session` | this one |
 | What the company sells | `get_brief`, `add_note`, `add_dnc`, `list_dnc` | `company-brief` |
 | Senders and channels | `list_senders`, `add_sender`, `list_mailboxes`, `connect_mailbox`, `update_mailbox`, `get_warmup`, `set_warmup`, `list_linkedin_accounts`, `connect_linkedin` | `sending-setup`, `sender-signatures` |
-| Domains and mailboxes to buy | `list_domains`, `quote_domains`, `buy_domains`, `get_google_organisation`, `set_google_organisation`, `order_mailboxes` | `sending-setup` |
+| Domains and mailboxes to buy | `list_domains`, `quote_domains`, `buy_domains`, `get_company_details`, `set_company_details`, `get_google_organisation`, `set_google_organisation`, `order_mailboxes` | `sending-setup` |
 | Which companies | `list_segments`, `save_segment`, `list_sources`, `save_source`, `list_segment_companies`, `save_companies`, `judge_companies` | `segment-design` |
 | Which people | `list_personas`, `save_persona` | `persona-design` |
 | Finding them | `count_companies`, `search_companies`, `count_people`, `search_people`, `enrich_profile`, `read_page`, `record_search`, `get_provider_call`, `save_contacts`, `list_contacts` | `sourcing` |

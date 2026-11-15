@@ -50,8 +50,10 @@ email goes from lookalike domains that redirect to the company's site, a few mai
    next passes. `list_domains` follows each one to ready.
 4. Bought Google mailboxes live in a Google Workspace organisation of the company's own, made with
    the first domain. `get_google_organisation` says how far it is and what it waits for:
-   - the company's legal name, postal address and contact, given once with
-     `set_google_organisation` (before or after the first purchase);
+   - the company details, given once with `set_company_details` (before or after the first
+     purchase): legal name, website, postal address, phone, and the contact who receives the
+     tenants' first admin logins — an address the company reads today, never one on a domain being
+     bought. They serve Microsoft too; `get_company_details` says what is still missing;
    - then one link for the organisation's admin to open, signed in as that admin, to accept
      Google's terms. Only the person can do this: give them the link and say what it is.
 5. `order_mailboxes` on a domain: up to five, each a first name, a last name and a username
