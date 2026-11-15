@@ -158,7 +158,11 @@ Before calling a sender stuck, check: a mailbox sends only inside the window in 
 so a US project's mailboxes are quiet until the US morning; a mailbox on the ladder sends a trickle;
 a domain whose outreach is held (`get_warmup`) waits for its notes to come back to the inbox.
 
-To end one lead's plan by hand, `stop_lead` with the reason; it cannot be undone.
+To hold one lead (the person wants to call them first, the company is in the news), `pause_lead`,
+with the day it goes on by itself if there is one; `unpause_lead` lets it go on (a yes first: its
+next step goes out). A lead Dylan paused itself, after an out-of-office or a booked meeting with a
+colleague, goes on by itself and is not let go by hand. To end one lead's plan,
+`stop_lead` with the reason; it cannot be undone.
 
 ## Record
 

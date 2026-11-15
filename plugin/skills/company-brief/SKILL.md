@@ -35,7 +35,8 @@ The brief is the first thing the person approves before any money is spent (`seg
 | Exclusions: current customers, competitors, partners, markets they will not serve | Do-not-contact and rules. |
 | Previous outreach: campaigns, sends and replies per channel, the replies themselves, who was written to | What answers, what does not, who must not be written to again. |
 
-Missing material is a question to the person, asked once and recorded.
+Missing material is a question to the person, asked once and recorded with `ask_question`; their
+answer goes in with `answer_question` and into the brief.
 
 ## Procedure
 
@@ -70,23 +71,24 @@ Missing material is a question to the person, asked once and recorded.
      `client_request`, `unsubscribed`, `complaint`, `bounced`). Nothing is ever written to them.
      `list_dnc` shows what is there. Ask for the customer list before the first launch: launching
      without it is how a company's own customers get cold email.
-   - hard rules on who is out (a country, an industry, a size, a business model): a `rule` note per
-     rule, in the company's words with the source. Exclusions already set on the project show in
-     the brief, and `judge_companies` refuses to qualify a company that breaks one; a rule kept as
-     a note you check yourself on every verdict.
+   - hard rules on who is out (a country, an industry, a size, a business model): `add_exclusion`
+     per rule, with the company's words and the source in its note. `judge_companies` refuses to
+     qualify a company that breaks one, and the answer lists companies already qualified that break
+     it, to judge again. A rule no kind can hold (`other`) is kept the same way, but nothing checks
+     it but you on every verdict.
    - constraints on how we write or send (topics to avoid, claims never to make, tone): a `rule`
      note each, so every writer follows it.
    - choices made with the person (markets in or out, priorities, the offer): a `decision` note.
-8. **Keep the brief itself in the project.** Where the project's brief is empty, keep yours as a
-   `decision` note titled "Brief: <company>, what we sell and to whom", the whole brief in its body.
-   A revision is a new note with `supersedes`, holding all of it, not the changes. Each strategy
-   carries the parts its copy needs in its own `brief` (`strategy-and-plans`).
+8. **Save the brief in the project** with `save_brief`, the whole of it every time: a revision
+   replaces what was there, so send all of it, not the changes. Every session reads it first in
+   `get_brief`. Each strategy carries the parts its copy needs in its own `brief`
+   (`strategy-and-plans`).
 9. **Saving is not approval.** On a new project, or when the brief changes who we sell to or what we
    say, put it in front of the person with what the material could not answer, and wait for their
    yes before anything is collected.
-10. **The goal**: how many meetings a month, and whether a meeting counts when booked or only when
-    held. It comes from the person. If the project has none, ask, and record the answer as a
-    `decision`.
+10. **The goal**: how many meetings a month, and whether a meeting counts once qualified (booked
+    and judged a fit) or only once held. It comes from the person. If the project has none for
+    this month, ask, and set it with `set_goal`; a goal for a later month is set the same way.
 
 ## Quality bar
 
@@ -110,5 +112,6 @@ Missing material is a question to the person, asked once and recorded.
 - Research written into the company's parts without a research marker.
 - The previous outreach left as a heading with nothing behind it and no question asking for it.
 - Hiding a conflict by picking one reading.
-- Hard exclusions left only in prose, where nobody checks them on a verdict.
+- Hard exclusions left only in prose, where nobody checks them on a verdict: each is an
+  `add_exclusion`.
 - Launching before the customer and competitor lists are on do-not-contact.

@@ -70,7 +70,9 @@ What every mail client renders the same way:
 
 ## 4. Set it and check it
 
-`add_sender` with `signature` and, if wanted, `signatureHtml`. Then, once a strategy has copy,
+`add_sender` with `signature` and, if wanted, `signatureHtml`; for a sender already there,
+`update_sender` (`null` clears one). A change reaches every email not yet sent. Then, once a
+strategy has copy,
 `preview_message` on one of its emails shows it as the lead gets it, the signature as text. Show
 the person that preview before any strategy sends with the sender.
 

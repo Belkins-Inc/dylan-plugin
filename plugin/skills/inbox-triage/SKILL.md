@@ -96,15 +96,18 @@ many:
 
 How to offer times, hold them and book: references/answers.md, "Meetings". In short: offer only
 free times, two or three, in the lead's own time zone; hold them with `offer_slots` so nobody else
-is offered the same hour; book with `book_meeting` once the lead plainly confirms one. `list_meetings`
-shows what is booked and how it went. Cancelling is the person's call.
+is offered the same hour; book with `book_meeting` once the lead plainly confirms one. `list_calendars`
+names the project's calendars and their ids, `list_free_times` what is free on them in the days
+ahead. `list_meetings` shows what is booked and how it went. Cancelling is the person's call.
 
 ## Record
 
 - The class and note on every reply are the record.
 - What the replies teach beyond one lead (an objection that keeps coming, an angle that draws "not
   now", a question the brief cannot answer): an `insight` note; a fact the person must give to
-  answer a lead: ask them, and say in the draft's note what is missing.
+  answer a lead: ask them, record it with `ask_question` on the lead's thread (its draft waits for
+  the answer), and say in the draft's note what is missing. Their answer goes in with
+  `answer_question`, and into the brief where every later answer needs it.
 - `end_session`: replies triaged by class, drafts waiting for approval and what they offer,
   follow-ups and referrals made or waiting for a yes, what to watch.
 

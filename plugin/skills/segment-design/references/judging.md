@@ -53,8 +53,8 @@ A `new` company always says what it waits on:
 
 - **a fact**: the reason names it ("number of sites unknown", "no headcount anywhere"). Anyone with
   the right source can settle it: the company's own site first, a paid lookup if the person agrees.
-- **the person**: the reason is the question, asked in this session and kept as a `todo` note until
-  answered; judge it on the answer.
+- **the person**: the reason is the question, asked in this session and recorded with
+  `ask_question` until answered; judge it on the answer.
 
 `list_segment_companies` with `waiting` set to fact or client lists either; with a status, the
 companies in it; with `q`, those whose name or domain match.
