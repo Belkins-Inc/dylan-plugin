@@ -17,7 +17,16 @@ and Node.js 22.18 or newer for the `dylan` command.
 
 ## Install
 
-One line in a terminal installs what is missing (git, Node.js, Claude Code), the plugin and the
+The simplest: open Claude Code and send it
+
+```
+Set me up for Dylan: follow https://github.com/Belkins-Inc/dylan-plugin/blob/main/SETUP.md
+```
+
+Claude installs what is missing, the plugin and the `dylan` command, and signs you in through the
+browser ([SETUP.md](SETUP.md) is what it follows).
+
+Or one line in a terminal installs what is missing (git, Node.js, Claude Code), the plugin and the
 `dylan` command, and signs you in through the browser:
 
 ```sh
