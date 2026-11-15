@@ -53,6 +53,13 @@ dylan --help
 In a script or a scheduled job, set `DYLAN_API_KEY` to a key made in Dylan's app instead of
 signing in.
 
+Without the plugin, for any agent that runs commands, install it from npm:
+
+```sh
+npm install -g @meetdylan/cli
+dylan login
+```
+
 ## Other agents
 
 The plugin is for Claude Code. Any other agent connects to Dylan's MCP server,
