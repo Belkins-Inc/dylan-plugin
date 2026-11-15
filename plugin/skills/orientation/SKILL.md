@@ -57,15 +57,15 @@ there is: positive answers go cold.
 | The project's set-up | `get_setup`, `set_time_zone`, `list_people`, `set_owner`, `set_goal` | this one |
 | What the company sells | `get_brief`, `save_brief`, `add_note`, `add_exclusion`, `add_dnc`, `list_dnc`, `ask_question` | `company-brief` |
 | Senders and channels | `list_senders`, `add_sender`, `update_sender`, `list_mailboxes`, `connect_mailbox`, `connect_smtp_mailbox`, `update_mailbox`, `get_warmup`, `set_warmup`, `list_linkedin_accounts`, `connect_linkedin` | `sending-setup`, `sender-signatures` |
-| Domains and mailboxes to buy | `list_domains`, `quote_domains`, `buy_domains`, `get_company_details`, `set_company_details`, `get_google_organisation`, `set_google_organisation`, `order_mailboxes` | `sending-setup` |
+| Domains and mailboxes to buy | `list_domains`, `quote_domains`, `buy_domains`, `get_company_details`, `set_company_details`, `get_google_organisation`, `set_google_organisation`, `get_microsoft_tenant`, `accept_microsoft_agreement`, `leave_microsoft_tenant`, `order_mailboxes` | `sending-setup` |
 | Which companies | `list_segments`, `save_segment`, `list_sources`, `save_source`, `list_segment_companies`, `save_companies`, `judge_companies` | `segment-design` |
 | Which people | `list_personas`, `save_persona` | `persona-design` |
 | Finding them | `count_companies`, `search_companies`, `count_people`, `search_people`, `enrich_profile`, `read_page`, `record_search`, `get_provider_call`, `save_contacts`, `list_contacts` | `sourcing` |
 | Addresses | `find_emails`, `collect_emails`, `verify_email`, `check_address`, `replace_address` | `email-finding` |
-| Strategies and plans | `list_strategies`, `get_strategy`, `create_strategy`, `update_strategy`, `set_plans`, `stand_contacts`, `enroll_leads`, `launch_strategy`, `pause_strategy`, `list_leads`, `pause_lead`, `unpause_lead`, `stop_lead` | `strategy-and-plans` |
+| Strategies and plans | `list_strategies`, `get_strategy`, `create_strategy`, `update_strategy`, `set_plans`, `stand_contacts`, `enroll_leads`, `launch_strategy`, `pause_strategy`, `list_leads`, `get_lead`, `pause_lead`, `unpause_lead`, `stop_lead` | `strategy-and-plans` |
 | Copy | `copy_queue`, `check_copy`, `write_copy`, `list_copy`, `preview_message` | `copywriting` |
 | Replies and meetings | `list_inbox`, `get_thread`, `triage_reply`, `draft_reply`, `list_drafts`, `approve_reply`, `discard_reply`, `close_thread`, `reengage`, `refer`, `list_meetings`, `list_calendars`, `list_free_times`, `offer_slots`, `booking_link`, `book_meeting`, `cancel_meeting` | `inbox-triage` |
-| Results | `get_dashboard`, `list_strategies`, `get_strategy`, `list_leads`, `get_spend` | `results-review` |
+| Results | `get_dashboard`, `list_strategies`, `get_strategy`, `list_leads`, `get_lead`, `get_spend` | `results-review` |
 | Privacy | `erase_person`, `list_erasures` | below |
 
 ## Ask the person first

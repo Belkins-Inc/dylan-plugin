@@ -158,6 +158,9 @@ Before calling a sender stuck, check: a mailbox sends only inside the window in 
 so a US project's mailboxes are quiet until the US morning; a mailbox on the ladder sends a trickle;
 a domain whose outreach is held (`get_warmup`) waits for its notes to come back to the inbox.
 
+To see where one lead stands, `get_lead` with its enrollment from `list_leads`: every step and what
+became of it, why one was skipped or is stuck, what goes next and when, and its threads.
+
 To hold one lead (the person wants to call them first, the company is in the news), `pause_lead`,
 with the day it goes on by itself if there is one; `unpause_lead` lets it go on (a yes first: its
 next step goes out). A lead Dylan paused itself, after an out-of-office or a booked meeting with a

@@ -57,6 +57,22 @@ email goes from lookalike domains that redirect to the company's site, a few mai
      bought. They serve Microsoft too; `get_company_details` says what is still missing;
    - then one link for the organisation's admin to open, signed in as that admin, to accept
      Google's terms. Only the person can do this: give them the link and say what it is.
+
+   Microsoft mailboxes, where `get_microsoft_tenant` says they are sold (`sold`), live in a
+   Microsoft 365 tenant of the company's own, made for it by Dylan as its Microsoft reseller with the first
+   domain bought with `platform: microsoft`. Otherwise buy for Google, or connect the company's own
+   Microsoft mailboxes (section 3). Before the first Microsoft purchase:
+   - the Microsoft Customer Agreement: show the person its link and version from
+     `get_microsoft_tenant`; once they have read it and agree, `accept_microsoft_agreement` with
+     the name and work address of the person who accepted — Microsoft is told they signed it;
+   - the same company details as for Google, with the website and phone too.
+
+   Then `get_microsoft_tenant` follows it: Microsoft mails the tenant's first admin login to the
+   company's contact, and the person who bought gets one link to open, signed in with that login,
+   to accept Dylan in the tenant. Only the person can do this: give them the link, say what Dylan
+   asks for there (managing the tenant's domains and mailboxes, and sending from them) and that
+   they can remove it at any time. `leave_microsoft_tenant` (an organisation admin) takes Dylan out
+   again; the tenant and its mailboxes stay the company's.
 5. `order_mailboxes` on a domain: up to five, each a first name, a last name and a username
    (`jane`, `jane.doe`), tied to the sender who signs as them. Each mailbox is a seat paid monthly,
    so order what the plan needs (`strategy-and-plans`, capacity), not a stock. The person approves
