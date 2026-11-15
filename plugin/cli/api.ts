@@ -4,7 +4,7 @@ import { DylanError } from './errors.ts'
 // Dylan's public API: the same tools as its MCP server, one POST each, the same answers and the
 // same refusals ({ error: { code, message, hint } }).
 
-export const VERSION = '0.1.0'
+export const VERSION = '0.1.1'
 
 /** A JSON Schema, as far as this command line reads one. */
 export type Schema = {
