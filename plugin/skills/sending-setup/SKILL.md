@@ -10,8 +10,8 @@ it. The pieces:
 
 | Piece | What it is | Tools |
 | --- | --- | --- |
-| Sender | A person the project writes as: name, title, signature. Mailboxes and LinkedIn accounts belong to a sender. | `list_senders`, `add_sender` |
-| Mailbox | A Google or Microsoft mailbox Dylan sends from and reads replies in. | `list_mailboxes`, `connect_mailbox`, `update_mailbox` |
+| Sender | A person the project writes as: name, title, signature. Mailboxes and LinkedIn accounts belong to a sender. | `list_senders`, `add_sender`, `update_sender` |
+| Mailbox | A Google, Microsoft or any SMTP and IMAP mailbox Dylan sends from and reads replies in. | `list_mailboxes`, `connect_mailbox`, `connect_smtp_mailbox`, `update_mailbox` |
 | Domain | A lookalike domain bought for sending, redirecting to the company's site. | `list_domains`, `quote_domains`, `buy_domains`, `order_mailboxes` |
 | Warm-up | Notes exchanged with a network of real mailboxes, which keeps the mailbox's reputation up and measures where its mail lands. | `get_warmup`, `set_warmup` |
 | LinkedIn account | The sender's own account, for invitations and messages. | `list_linkedin_accounts`, `connect_linkedin` |
@@ -21,6 +21,7 @@ it. The pieces:
 One sender per real person the copy signs as. `add_sender` with the name and title, and a
 signature: an email from a sender with none goes out unsigned. The `sender-signatures` guide
 writes it. Mailboxes and LinkedIn accounts are then attached to that sender when they connect.
+`update_sender` changes a sender's name, title or signature later.
 
 ## 2. Never send cold from the company's own domain
 
@@ -66,6 +67,10 @@ email goes from lookalike domains that redirect to the company's site, a few mai
 - `connect_mailbox` answers a sign-in link (good for ten minutes) for a Google or Microsoft
   mailbox. Give it to the person to open in a browser; it signs in as them, never through you.
   Name the sender it belongs to, and the daily limit (section 4).
+- A mailbox on any other host (one that speaks SMTP and IMAP) is connected by its password: the
+  person does it on Senders in Dylan's app, where the password stays out of the chat.
+  `connect_smtp_mailbox` takes it from you only when the person chooses to hand it over; it needs
+  the address, the password (an app password where the host asks for one) and both servers.
 - A mailbox the company has used for everyday mail for months may be connected as already warmed;
   a new one never.
 - `connect_linkedin` answers a sign-in link for the person's own LinkedIn account, with the country
