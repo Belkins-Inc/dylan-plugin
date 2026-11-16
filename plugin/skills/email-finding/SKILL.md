@@ -52,7 +52,10 @@ still be written to on LinkedIn.
    the row updates that contact instead of making a second one: the address, its status, and the
    facts of the search ("found, verified deliverable 2026-10-07"). Save `invalid` addresses too, with
    their status, so nobody pays for them again. Read the warnings on each saved row: the profile stayed
-   with another contact (two people on one profile), or the address is not at the company.
+   with another contact (two people on one profile), or the address is not at the company. A row
+   `refused` names a contact that already has the address and is someone else by name or profile:
+   the provider gave two people one address, nothing was saved, and this person's address is still
+   to find. Only when it is the same person (a name corrected) send it again with `samePerson: true`.
 7. **Not found**: note it in the contact's facts ("not found, 2026-10-07"). There is no third try:
    the person goes LinkedIn-only.
 
