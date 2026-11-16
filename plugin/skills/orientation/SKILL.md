@@ -26,7 +26,8 @@ Never assume an earlier session did or did not do something: read it.
    mailboxes, calendars, goals), and for each step the request to work from. The owner and the time
    zone (`set_owner`, `set_time_zone`, the people from `list_people`) and this month's goal
    (`set_goal`) are the person's answers, set by you once they give them; the brief is yours to
-   write (`company-brief`); the channels are in `sending-setup`.
+   write (`company-brief`); the channels are in `sending-setup`. An optional step the person
+   decides to go without (the client's rules, LinkedIn) is skipped with `skip_setup_step`.
 4. Then read in full what matters for today (`get_dashboard`, `list_strategies`, `list_inbox`,
    `list_tasks`), and decide.
 
@@ -56,7 +57,7 @@ there is: positive answers go cold.
 | Job | Tools | Guide |
 | --- | --- | --- |
 | Orientation and memory | `list_projects`, `get_brief`, `get_setup`, `get_dashboard`, `get_spend`, `get_wallet`, `get_behaviour`, `list_tasks`, `open_task`, `close_task`, `add_note`, `ask_question`, `answer_question`, `add_hypothesis`, `update_hypothesis`, `end_session` | this one |
-| The project's set-up | `get_setup`, `set_time_zone`, `list_people`, `set_owner`, `set_goal` | this one |
+| The project's set-up | `get_setup`, `skip_setup_step`, `set_time_zone`, `list_people`, `set_owner`, `set_goal` | this one |
 | What the company sells | `get_brief`, `save_brief`, `add_note`, `add_exclusion`, `add_dnc`, `list_dnc`, `ask_question` | `company-brief` |
 | Senders and channels | `list_senders`, `add_sender`, `update_sender`, `list_mailboxes`, `connect_mailbox`, `connect_smtp_mailbox`, `update_mailbox`, `get_warmup`, `set_warmup`, `list_linkedin_accounts`, `connect_linkedin` | `sending-setup`, `sender-signatures` |
 | Domains and mailboxes to buy | `list_domains`, `quote_domains`, `buy_domains`, `get_company_details`, `set_company_details`, `get_google_organisation`, `set_google_organisation`, `get_microsoft_tenant`, `accept_microsoft_agreement`, `leave_microsoft_tenant`, `order_mailboxes`, `list_mailbox_orders`, `transfer_domain` | `sending-setup` |
