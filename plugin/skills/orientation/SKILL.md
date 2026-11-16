@@ -28,8 +28,8 @@ Never assume an earlier session did or did not do something: read it.
    (`set_goal`) are the person's answers, set by you once they give them; the brief is yours to
    write (`company-brief`); the channels are in `sending-setup`. An optional step the person
    decides to go without (the client's rules, LinkedIn) is skipped with `skip_setup_step`.
-4. Then read in full what matters for today (`get_dashboard`, `list_strategies`, `list_inbox`,
-   `list_tasks`), and decide.
+4. Then read in full what matters for today (`get_health` for what waits and what is broken,
+   `get_dashboard`, `list_strategies`, `list_inbox`, `list_tasks`), and decide.
 
 ## Reading the brief
 
@@ -56,7 +56,7 @@ there is: positive answers go cold.
 
 | Job | Tools | Guide |
 | --- | --- | --- |
-| Orientation and memory | `list_projects`, `get_brief`, `get_setup`, `get_dashboard`, `get_spend`, `get_wallet`, `get_behaviour`, `list_tasks`, `open_task`, `close_task`, `add_note`, `ask_question`, `answer_question`, `add_hypothesis`, `update_hypothesis`, `end_session` | this one |
+| Orientation and memory | `list_projects`, `get_brief`, `get_setup`, `get_health`, `get_dashboard`, `get_spend`, `get_wallet`, `get_behaviour`, `list_tasks`, `open_task`, `close_task`, `add_note`, `ask_question`, `answer_question`, `add_hypothesis`, `update_hypothesis`, `end_session` | this one |
 | The project's set-up | `get_setup`, `skip_setup_step`, `set_time_zone`, `list_people`, `set_owner`, `set_goal` | this one |
 | What the company sells | `get_brief`, `save_brief`, `add_note`, `add_exclusion`, `add_dnc`, `list_dnc`, `ask_question` | `company-brief` |
 | Senders and channels | `list_senders`, `add_sender`, `update_sender`, `list_mailboxes`, `connect_mailbox`, `connect_smtp_mailbox`, `update_mailbox`, `get_warmup`, `set_warmup`, `get_domain_cap`, `set_domain_cap`, `list_linkedin_accounts`, `connect_linkedin` | `sending-setup`, `sender-signatures` |
@@ -69,7 +69,7 @@ there is: positive answers go cold.
 | Strategies and plans | `list_strategies`, `get_strategy`, `create_strategy`, `update_strategy`, `set_plans`, `stand_contacts`, `enroll_leads`, `launch_strategy`, `pause_strategy`, `list_leads`, `get_lead`, `pause_lead`, `unpause_lead`, `resume_lead`, `stop_lead` | `strategy-and-plans` |
 | Copy | `copy_queue`, `check_copy`, `write_copy`, `list_copy`, `preview_message` | `copywriting` |
 | Replies and meetings | `list_inbox`, `get_thread`, `triage_reply`, `draft_reply`, `list_drafts`, `approve_reply`, `discard_reply`, `close_thread`, `reengage`, `refer`, `list_meetings`, `list_calendars`, `list_free_times`, `offer_slots`, `booking_link`, `book_meeting`, `cancel_meeting` | `inbox-triage` |
-| Results | `get_dashboard`, `list_strategies`, `get_strategy`, `list_leads`, `get_lead`, `get_spend` | `results-review` |
+| Results | `get_dashboard`, `get_funnel`, `get_channels`, `list_strategies`, `get_strategy`, `list_leads`, `get_lead`, `get_spend` | `results-review` |
 | Privacy | `erase_person`, `list_erasures` | below |
 
 ## Ask the person first

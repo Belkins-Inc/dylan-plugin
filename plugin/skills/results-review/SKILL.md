@@ -23,7 +23,9 @@ results against the goal, what worked and why, what changes next, and what is ne
 ## Procedure
 
 1. **Gather the figures** for the period: `get_dashboard` (companies, reached, contacts, leads,
-   contacted, replied, positive, meetings, broken down by strategy, segment, persona and channel),
+   contacted, replied, positive, meetings, broken down by strategy, segment, persona and channel,
+   counted over every lead a strategy ever had), `get_funnel` and `get_channels` for a month's own
+   (leads written to, replied, positive and meetings in it; and by channel, how many were reached),
    `list_strategies` and `get_strategy` for each running one, `list_leads` by state (in plan,
    stuck, paused, replied, ended), `list_meetings`, and `get_spend` when cost is part of the review.
 2. **Check the figures against each other** before writing a word: messages sent at least the
