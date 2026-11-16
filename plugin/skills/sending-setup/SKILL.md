@@ -14,7 +14,7 @@ it. The pieces:
 | --- | --- | --- |
 | Sender | A person the project writes as: name, title, signature. Mailboxes and LinkedIn accounts belong to a sender. | `list_senders`, `add_sender`, `update_sender` |
 | Mailbox | A Google, Microsoft or any SMTP and IMAP mailbox Dylan sends from and reads replies in. | `list_mailboxes`, `connect_mailbox`, `connect_smtp_mailbox`, `update_mailbox` |
-| Domain | A lookalike domain bought for sending, redirecting to the company's site. | `list_domains`, `quote_domains`, `buy_domains`, `order_mailboxes`, `list_mailbox_orders`, `transfer_domain` |
+| Domain | A lookalike domain bought for sending, redirecting to the company's site. | `list_domains`, `quote_domains`, `buy_domains`, `order_mailboxes`, `list_mailbox_orders`, `transfer_domain`, `get_domain_dns`, `add_domain_record`, `delete_domain_record`, `set_domain_redirect` |
 | Warm-up | Notes exchanged with a network of real mailboxes, which keeps the mailbox's reputation up and measures where its mail lands. | `get_warmup`, `set_warmup` |
 | LinkedIn account | The sender's own account, for invitations and messages. | `list_linkedin_accounts`, `connect_linkedin` |
 
@@ -80,7 +80,12 @@ email goes from lookalike domains that redirect to the company's site, a few mai
    so order what the plan needs (`strategy-and-plans`, capacity), not a stock. The person approves
    the order. Dylan makes and connects them: `list_mailbox_orders` follows each order (and says
    why one failed), `list_mailboxes` shows them once connected.
-6. A bought domain is the company's: `transfer_domain` (an organisation admin, with the person's
+6. A bought domain's DNS is the company's to add to: `get_domain_dns` lists its records (each with
+   its id) and redirects, `add_domain_record` adds one (a site verification, a subdomain pointed
+   somewhere) and `delete_domain_record` deletes one. The mail setup Dylan keeps (MX, SPF, DKIM,
+   DMARC) is marked `sending` and refused either way. `set_domain_redirect` moves the redirect to
+   another site, or removes it with `url: null`.
+7. A bought domain is the company's: `transfer_domain` (an organisation admin, with the person's
    yes) asks for its transfer code to move it to a registrar of their own. Dylan's people mail the
    code to the person who asked, and it keeps renewing until it has moved; a domain moves only 60
    days after its registration, and the answer says from when.
