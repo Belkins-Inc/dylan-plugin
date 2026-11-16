@@ -166,8 +166,10 @@ became of it, why one was skipped or is stuck, what goes next and when, and its 
 To hold one lead (the person wants to call them first, the company is in the news), `pause_lead`,
 with the day it goes on by itself if there is one; `unpause_lead` lets it go on (a yes first: its
 next step goes out). A lead Dylan paused itself, after an out-of-office or a booked meeting with a
-colleague, goes on by itself and is not let go by hand. To end one lead's plan,
-`stop_lead` with the reason; it cannot be undone.
+colleague, goes on by itself and is not let go by hand. A lead a reply stopped when the reply
+needed nothing ("thanks, got it"), or one stopped as the wrong person who turns out to be at the
+company after all, goes back in its plan with `resume_lead` (a yes first: its steps go out again).
+To end one lead's plan, `stop_lead` with the reason; it cannot be undone.
 
 ## Record
 

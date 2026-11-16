@@ -86,18 +86,20 @@ to replace the address. Read the bounce as a signal about the batch too: if seve
 how their addresses were found before buying more the same way.
 
 1. **Find the contact**: `list_contacts` with the bounced address gives its id.
-2. **Guess up to three addresses**, on evidence, most likely first: the pattern of valid addresses
+2. **See what was checked already**: `list_address_checks` with the contact's id (free). A `valid`
+   one other than the bounced address goes straight to step 5.
+3. **Guess up to three addresses**, on evidence, most likely first: the pattern of valid addresses
    at the same domain (`list_contacts` with the domain), else the common ones (`first.last`,
    `first`, `flast`, `firstlast`, `firstl`, `f.last`). Never the address that
    bounced. A changed domain (the company rebranded, the person moved) is a different question:
    check the company first.
-3. **Check each** with `check_address` (1¢ each, a yes first). Up to three per contact; a fourth is
-   refused. `valid` → step 4. `risky` means the domain takes everything: nothing confirms a guess
+4. **Check each** with `check_address` (1¢ each, a yes first). Up to three per contact; a fourth is
+   refused. `valid` → step 5. `risky` means the domain takes everything: nothing confirms a guess
    there, so treat it as not confirmed.
-4. **Replace** with `replace_address`, after the person's yes: it sends. Only a `valid` address is
+5. **Replace** with `replace_address`, after the person's yes: it sends. Only a `valid` address is
    taken. The step that bounced goes again to it a minute later, the lead's other email steps come
    back, and Dylan closes its task.
-5. **None confirmed** after three: let the email channel go. `close_task` as cancelled with a note
+6. **None confirmed** after three: let the email channel go. `close_task` as cancelled with a note
    that says so; the lead goes on by LinkedIn where its plan has LinkedIn steps.
 
 ## Before you stop

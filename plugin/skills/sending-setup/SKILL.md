@@ -125,6 +125,10 @@ and pacing.
   and lets it go again by itself once the notes are back in the inbox for three days. A held
   mailbox's leads wait. Without warm-up nothing measures placement, so nothing can hold a domain
   before its reputation is spent.
+- **One company a day**: the project sends at most 3 emails a day to one company's domain unless
+  set, across all its mailboxes and strategies; a lead beyond it waits for the next day.
+  `get_domain_cap` reads it, `set_domain_cap` sets it (1 to 50). Raise it only when the person
+  wants many people at one company written to the same day.
 - **LinkedIn**: each account sends up to 15 invitations and 40 messages a day by default, on send
   days. One invitation per lead, so an account opens at most about 75 new leads a week.
 

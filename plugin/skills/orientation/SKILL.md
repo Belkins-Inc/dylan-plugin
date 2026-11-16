@@ -59,13 +59,14 @@ there is: positive answers go cold.
 | Orientation and memory | `list_projects`, `get_brief`, `get_setup`, `get_dashboard`, `get_spend`, `get_wallet`, `get_behaviour`, `list_tasks`, `open_task`, `close_task`, `add_note`, `ask_question`, `answer_question`, `add_hypothesis`, `update_hypothesis`, `end_session` | this one |
 | The project's set-up | `get_setup`, `skip_setup_step`, `set_time_zone`, `list_people`, `set_owner`, `set_goal` | this one |
 | What the company sells | `get_brief`, `save_brief`, `add_note`, `add_exclusion`, `add_dnc`, `list_dnc`, `ask_question` | `company-brief` |
-| Senders and channels | `list_senders`, `add_sender`, `update_sender`, `list_mailboxes`, `connect_mailbox`, `connect_smtp_mailbox`, `update_mailbox`, `get_warmup`, `set_warmup`, `list_linkedin_accounts`, `connect_linkedin` | `sending-setup`, `sender-signatures` |
+| Senders and channels | `list_senders`, `add_sender`, `update_sender`, `list_mailboxes`, `connect_mailbox`, `connect_smtp_mailbox`, `update_mailbox`, `get_warmup`, `set_warmup`, `get_domain_cap`, `set_domain_cap`, `list_linkedin_accounts`, `connect_linkedin` | `sending-setup`, `sender-signatures` |
 | Domains and mailboxes to buy | `list_domains`, `quote_domains`, `buy_domains`, `get_company_details`, `set_company_details`, `get_google_organisation`, `set_google_organisation`, `get_microsoft_tenant`, `accept_microsoft_agreement`, `leave_microsoft_tenant`, `order_mailboxes`, `list_mailbox_orders`, `transfer_domain` | `sending-setup` |
 | Which companies | `list_segments`, `save_segment`, `list_sources`, `save_source`, `list_segment_companies`, `save_companies`, `judge_companies` | `segment-design` |
 | Which people | `list_personas`, `save_persona` | `persona-design` |
+| Labels on companies and contacts | `list_labels`, `add_label`, `update_label`, `remove_label` | this one |
 | Finding them | `count_companies`, `search_companies`, `count_people`, `search_people`, `enrich_profile`, `read_page`, `quote_data`, `record_search`, `get_provider_call`, `save_contacts`, `list_contacts` | `sourcing` |
-| Addresses | `find_emails`, `collect_emails`, `verify_email`, `check_address`, `replace_address` | `email-finding` |
-| Strategies and plans | `list_strategies`, `get_strategy`, `create_strategy`, `update_strategy`, `set_plans`, `stand_contacts`, `enroll_leads`, `launch_strategy`, `pause_strategy`, `list_leads`, `get_lead`, `pause_lead`, `unpause_lead`, `stop_lead` | `strategy-and-plans` |
+| Addresses | `find_emails`, `collect_emails`, `verify_email`, `list_address_checks`, `check_address`, `replace_address` | `email-finding` |
+| Strategies and plans | `list_strategies`, `get_strategy`, `create_strategy`, `update_strategy`, `set_plans`, `stand_contacts`, `enroll_leads`, `launch_strategy`, `pause_strategy`, `list_leads`, `get_lead`, `pause_lead`, `unpause_lead`, `resume_lead`, `stop_lead` | `strategy-and-plans` |
 | Copy | `copy_queue`, `check_copy`, `write_copy`, `list_copy`, `preview_message` | `copywriting` |
 | Replies and meetings | `list_inbox`, `get_thread`, `triage_reply`, `draft_reply`, `list_drafts`, `approve_reply`, `discard_reply`, `close_thread`, `reengage`, `refer`, `list_meetings`, `list_calendars`, `list_free_times`, `offer_slots`, `booking_link`, `book_meeting`, `cancel_meeting` | `inbox-triage` |
 | Results | `get_dashboard`, `list_strategies`, `get_strategy`, `list_leads`, `get_lead`, `get_spend` | `results-review` |
@@ -84,7 +85,7 @@ first, in one or two lines, and wait for a yes.
   is held costs a day, how many days it lasts and automatic top-up. Topping up, saving a card and
   setting automatic top-up are a person's, on the app's Wallet page: say so, do not try.
 - **Writes to people**: `launch_strategy`, `approve_reply`, `book_meeting`, `cancel_meeting`,
-  `reengage`, `refer`, `replace_address`, `unpause_lead`, `enroll_leads` on an active strategy.
+  `reengage`, `refer`, `replace_address`, `unpause_lead`, `resume_lead`, `enroll_leads` on an active strategy.
 - **Cannot be undone**: `stop_lead`, `erase_person` (an admin's act: it forgets a person who asked
   to be forgotten, across the organisation), `add_dnc`.
 
@@ -134,6 +135,11 @@ thread, its draft waits for the answer. Their answer goes in with `answer_questi
 **Work only a person can do** (a call to make, material to send, a decision with someone else) is an
 `open_task`: the title is what to do, `doneWhen` what done looks like. It goes to the project's owner
 unless you name one of the organisation's people; they hear of it by mail.
+
+**Labels** are the project's own tags on its companies and contacts ("Partner", "Competitor",
+"Event 2026"): the person sorts and filters leads by them. `list_labels` lists them with how many
+carry each; `add_label` makes one, `update_label` renames it everywhere, `remove_label` takes it off
+everything (the companies and contacts stay). Ask before renaming or removing one the person made.
 
 ## End of session
 
