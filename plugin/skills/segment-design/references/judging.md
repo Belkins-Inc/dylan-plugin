@@ -57,7 +57,8 @@ A `new` company always says what it waits on:
   `ask_question` until answered; judge it on the answer.
 
 `list_segment_companies` with `waiting` set to fact or client lists either; with a status, the
-companies in it; with `q`, those whose name or domain match.
+companies in it; with `q`, those whose name or domain match. `list_verdicts` reads every verdict
+ever passed on one company, with its reason and evidence, before a verdict is changed.
 
 ## Signals
 

@@ -91,10 +91,12 @@ runs until the person has approved the brief, the titles and the segment with it
    3. `record_search` with what was asked, the results, how many were new, the call ids and the
       cursor where the next search picks up;
    4. `judge_companies`: a verdict per company (below);
-   5. a source that runs dry: say so in its instructions (`save_source` with the same name) and in
-      the hand-over, so nobody pays to search it again.
+   5. a source that runs dry: mark it exhausted (`set_source_status`), say why in its instructions
+      (`save_source` with the same name) and in the hand-over, so nobody pays to search it again.
 9. **Record what you learned**: an `insight` note scoped to the segment (a source that yields 5%
-   qualified, a size band that works) or a `decision` (a segment opened or paused, and why).
+   qualified, a size band that works) or a `decision` (a segment opened or paused, and why). A
+   segment put down or back is `set_segment_status`: paused or archived, nobody is asked to judge
+   its companies; exhausted, they are still judged but nothing more is looked for.
 
 ## Judging companies
 
