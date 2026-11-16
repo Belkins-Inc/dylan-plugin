@@ -63,12 +63,12 @@ there is: positive answers go cold.
 | Domains and mailboxes to buy | `list_domains`, `quote_domains`, `buy_domains`, `get_company_details`, `set_company_details`, `get_google_organisation`, `set_google_organisation`, `get_microsoft_tenant`, `accept_microsoft_agreement`, `leave_microsoft_tenant`, `order_mailboxes`, `list_mailbox_orders`, `transfer_domain`, `get_domain_dns`, `add_domain_record`, `delete_domain_record`, `set_domain_redirect` | `sending-setup` |
 | Which companies | `list_segments`, `save_segment`, `set_segment_status`, `list_sources`, `save_source`, `set_source_status`, `list_segment_companies`, `list_verdicts`, `save_companies`, `judge_companies` | `segment-design` |
 | Which people | `list_personas`, `save_persona` | `persona-design` |
-| Labels on companies and contacts | `list_labels`, `add_label`, `update_label`, `remove_label` | this one |
+| Labels on companies and contacts | `list_labels`, `add_label`, `update_label`, `remove_label`, `apply_label`, `take_off_label` | this one |
 | Finding them | `count_companies`, `search_companies`, `count_people`, `search_people`, `enrich_profile`, `read_page`, `quote_data`, `record_search`, `get_provider_call`, `save_contacts`, `list_contacts` | `sourcing` |
 | Addresses | `find_emails`, `collect_emails`, `verify_email`, `list_address_checks`, `check_address`, `replace_address` | `email-finding` |
 | Strategies and plans | `list_strategies`, `get_strategy`, `create_strategy`, `update_strategy`, `set_plans`, `stand_contacts`, `enroll_leads`, `launch_strategy`, `pause_strategy`, `list_leads`, `get_lead`, `pause_lead`, `unpause_lead`, `resume_lead`, `stop_lead` | `strategy-and-plans` |
 | Copy | `copy_queue`, `check_copy`, `write_copy`, `list_copy`, `preview_message` | `copywriting` |
-| Replies and meetings | `list_inbox`, `get_thread`, `triage_reply`, `draft_reply`, `list_drafts`, `approve_reply`, `discard_reply`, `close_thread`, `reengage`, `refer`, `list_meetings`, `list_calendars`, `list_free_times`, `offer_slots`, `booking_link`, `book_meeting`, `cancel_meeting` | `inbox-triage` |
+| Replies and meetings | `list_inbox`, `count_inbox`, `get_pipeline`, `get_thread`, `triage_reply`, `draft_reply`, `list_drafts`, `approve_reply`, `unapprove_reply`, `discard_reply`, `close_thread`, `reopen_thread`, `set_deal_stage`, `reengage`, `refer`, `list_meetings`, `list_calendars`, `list_free_times`, `offer_slots`, `booking_link`, `book_meeting`, `cancel_meeting` | `inbox-triage` |
 | Results | `get_dashboard`, `get_funnel`, `get_channels`, `list_strategies`, `get_strategy`, `list_leads`, `get_lead`, `get_spend` | `results-review` |
 | Privacy | `erase_person`, `list_erasures` | below |
 
@@ -139,7 +139,8 @@ unless you name one of the organisation's people; they hear of it by mail.
 **Labels** are the project's own tags on its companies and contacts ("Partner", "Competitor",
 "Event 2026"): the person sorts and filters leads by them. `list_labels` lists them with how many
 carry each; `add_label` makes one, `update_label` renames it everywhere, `remove_label` takes it off
-everything (the companies and contacts stay). Ask before renaming or removing one the person made.
+everything (the companies and contacts stay). `apply_label` puts one, by name, on companies and
+contacts (made when the project has none of that name); `take_off_label` takes it off them. Ask before renaming or removing one the person made.
 
 ## End of session
 

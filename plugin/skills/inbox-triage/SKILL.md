@@ -71,6 +71,7 @@ many:
 5. **Close what needs nothing.** A reply whose class still asks for an answer but needs none (a
    thank-you, a mailbox that forwards): `close_thread` with a note saying what happened instead of
    an answer ("mailbox moved, forwards to the new address"); it opens again when the lead writes.
+   `reopen_thread` takes a close back.
 6. **Follow-ups**, with the person's yes (both write to people):
    - `not_now` with a date: `reengage` on the reply makes a new plan for the lead in the same
      strategy, starting that day. Its copy is written like any other (`copywriting`), with this
@@ -92,7 +93,8 @@ many:
   it needs it.
 - After approving, tell the person what goes where: from the thread's mailbox (often not their own,
   so it shows in that mailbox's sent mail), to whom, and when.
-- `discard_reply` withdraws a draft, or an approved answer not yet sent.
+- `discard_reply` withdraws a draft, or an approved answer not yet sent; `unapprove_reply` takes the
+  approval back and leaves it a draft.
 - A failed answer usually means a disconnected mailbox: have it connected again, then draft again.
 
 ## Meetings
@@ -102,6 +104,12 @@ free times, two or three, in the lead's own time zone; hold them with `offer_slo
 is offered the same hour; book with `book_meeting` once the lead plainly confirms one. `list_calendars`
 names the project's calendars and their ids, `list_free_times` what is free on them in the days
 ahead. `list_meetings` shows what is booked and how it went. Cancelling is the person's call.
+
+## The pipeline
+
+`count_inbox` counts the conversations at each stage; `get_pipeline` lists every one with a lead who
+answered, by stage. Past the meeting the stage is the person's: `set_deal_stage` on the thread
+(opportunity, proposal, won, lost; null clears it) when they tell you where a deal stands.
 
 ## Record
 
