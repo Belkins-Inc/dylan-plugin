@@ -43,7 +43,7 @@ Never assume an earlier session did or did not do something: read it.
 | Open tasks | Work Dylan or a person asked for. If one is done, close it with `close_task` and a note of what you saw. |
 | Open questions | What the person was asked and the work waits on. An answer they gave goes in with `answer_question`. |
 | Hypotheses | Ideas being tested or waiting for a yes, with how each will be judged (below). |
-| Queues | Replies to triage, drafts waiting for approval, positive threads gone quiet (`positiveToChase`), due "not now" follow-ups (`followUpsDue`), past-due meetings to settle (`meetingsToSettle`), steps with no copy, leads that cannot move. |
+| Queues | Replies to triage, drafts waiting for approval, positive threads gone quiet (`positiveToChase`), due "not now" follow-ups (`followUpsDue`), past-due meetings to settle (`meetingsToSettle`: ask the person how each went and record it with `record_meeting_outcome`), steps with no copy, leads that cannot move. |
 | Channels | Mailboxes and LinkedIn accounts with a problem: sending and reading stop for that channel until the person fixes it. |
 | Last sessions | The last hand-overs: pick up what was left, check what was flagged to watch. |
 
@@ -68,7 +68,7 @@ there is: positive answers go cold.
 | Addresses | `find_emails`, `collect_emails`, `verify_email`, `list_address_checks`, `check_address`, `replace_address` | `email-finding` |
 | Strategies and plans | `list_strategies`, `get_strategy`, `create_strategy`, `update_strategy`, `set_plans`, `stand_contacts`, `enroll_leads`, `launch_strategy`, `pause_strategy`, `list_leads`, `get_lead`, `pause_lead`, `unpause_lead`, `resume_lead`, `stop_lead` | `strategy-and-plans` |
 | Copy | `copy_queue`, `check_copy`, `write_copy`, `list_copy`, `preview_message` | `copywriting` |
-| Replies and meetings | `list_inbox`, `count_inbox`, `get_pipeline`, `get_thread`, `triage_reply`, `draft_reply`, `list_drafts`, `approve_reply`, `unapprove_reply`, `discard_reply`, `close_thread`, `reopen_thread`, `set_deal_stage`, `reengage`, `refer`, `list_meetings`, `list_calendars`, `list_free_times`, `offer_slots`, `booking_link`, `book_meeting`, `cancel_meeting` | `inbox-triage` |
+| Replies and meetings | `list_inbox`, `count_inbox`, `get_pipeline`, `get_thread`, `triage_reply`, `draft_reply`, `list_drafts`, `approve_reply`, `unapprove_reply`, `discard_reply`, `close_thread`, `reopen_thread`, `set_deal_stage`, `reengage`, `refer`, `list_meetings`, `list_calendars`, `list_free_times`, `offer_slots`, `booking_link`, `book_meeting`, `move_meeting`, `cancel_meeting`, `keep_meeting`, `retry_meeting`, `record_meeting_outcome` | `inbox-triage` |
 | Results | `get_dashboard`, `get_funnel`, `get_channels`, `list_strategies`, `get_strategy`, `list_leads`, `get_lead`, `get_spend` | `results-review` |
 | Privacy | `erase_person`, `list_erasures` | below |
 
@@ -84,8 +84,9 @@ first, in one or two lines, and wait for a yes.
   from them, never from memory. `get_spend` shows what was spent; `get_wallet` the balance, what
   is held costs a day, how many days it lasts and automatic top-up. Topping up, saving a card and
   setting automatic top-up are a person's, on the app's Wallet page: say so, do not try.
-- **Writes to people**: `launch_strategy`, `approve_reply`, `book_meeting`, `cancel_meeting`,
-  `reengage`, `refer`, `replace_address`, `unpause_lead`, `resume_lead`, `enroll_leads` on an active strategy.
+- **Writes to people**: `launch_strategy`, `approve_reply`, `book_meeting`, `move_meeting`,
+  `cancel_meeting`, `reengage`, `refer`, `replace_address`, `unpause_lead`, `resume_lead`,
+  `enroll_leads` on an active strategy.
 - **Cannot be undone**: `stop_lead`, `erase_person` (an admin's act: it forgets a person who asked
   to be forgotten, across the organisation), `add_dnc`.
 
