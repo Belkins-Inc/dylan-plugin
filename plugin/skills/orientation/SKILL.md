@@ -66,8 +66,8 @@ there is: positive answers go cold.
 | Labels on companies and contacts | `list_labels`, `add_label`, `update_label`, `remove_label`, `apply_label`, `take_off_label` | this one |
 | Finding them | `count_companies`, `search_companies`, `count_people`, `search_people`, `enrich_profile`, `read_page`, `quote_data`, `record_search`, `get_provider_call`, `save_contacts`, `list_contacts` | `sourcing` |
 | Addresses | `find_emails`, `collect_emails`, `verify_email`, `list_address_checks`, `check_address`, `replace_address` | `email-finding` |
-| Strategies and plans | `list_strategies`, `get_strategy`, `create_strategy`, `update_strategy`, `set_plans`, `stand_contacts`, `enroll_leads`, `launch_strategy`, `pause_strategy`, `list_leads`, `get_lead`, `pause_lead`, `unpause_lead`, `resume_lead`, `stop_lead` | `strategy-and-plans` |
-| Copy | `copy_queue`, `check_copy`, `write_copy`, `list_copy`, `preview_message` | `copywriting` |
+| Strategies and plans | `list_strategies`, `get_strategy`, `create_strategy`, `update_strategy`, `set_plans`, `add_plan`, `add_step`, `update_step`, `remove_step`, `exclude_companies`, `include_companies`, `stand_contacts`, `enroll_leads`, `launch_strategy`, `unlaunch_strategy`, `pause_strategy`, `archive_strategy`, `respread_starts`, `repick_mailboxes`, `list_leads`, `get_lead`, `pause_lead`, `unpause_lead`, `resume_lead`, `stop_lead` | `strategy-and-plans` |
+| Copy | `copy_queue`, `check_copy`, `write_copy`, `list_copy`, `clear_copy`, `preview_message`, `test_copy`, `list_samples`, `write_samples`, `remove_sample` | `copywriting` |
 | Replies and meetings | `list_inbox`, `count_inbox`, `get_pipeline`, `get_thread`, `triage_reply`, `draft_reply`, `list_drafts`, `approve_reply`, `unapprove_reply`, `discard_reply`, `close_thread`, `reopen_thread`, `set_deal_stage`, `reengage`, `refer`, `list_meetings`, `list_calendars`, `list_free_times`, `offer_slots`, `booking_link`, `book_meeting`, `move_meeting`, `cancel_meeting`, `keep_meeting`, `retry_meeting`, `record_meeting_outcome` | `inbox-triage` |
 | Results | `get_dashboard`, `get_funnel`, `get_channels`, `list_strategies`, `get_strategy`, `list_leads`, `get_lead`, `get_spend` | `results-review` |
 | Privacy | `erase_person`, `list_erasures` | below |
@@ -84,10 +84,10 @@ first, in one or two lines, and wait for a yes.
   from them, never from memory. `get_spend` shows what was spent; `get_wallet` the balance, what
   is held costs a day, how many days it lasts and automatic top-up. Topping up, saving a card and
   setting automatic top-up are a person's, on the app's Wallet page: say so, do not try.
-- **Writes to people**: `launch_strategy`, `approve_reply`, `book_meeting`, `move_meeting`,
+- **Writes to people**: `launch_strategy`, `test_copy` (to someone of your organisation only), `approve_reply`, `book_meeting`, `move_meeting`,
   `cancel_meeting`, `reengage`, `refer`, `replace_address`, `unpause_lead`, `resume_lead`,
   `enroll_leads` on an active strategy.
-- **Cannot be undone**: `stop_lead`, `erase_person` (an admin's act: it forgets a person who asked
+- **Cannot be undone**: `stop_lead`, `archive_strategy`, `remove_step`, `erase_person` (an admin's act: it forgets a person who asked
   to be forgotten, across the organisation), `add_dnc`.
 
 A scheduled run of an agent, with nobody watching, is refused every destructive tool: it reads,

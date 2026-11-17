@@ -1,6 +1,6 @@
 ---
 name: copywriting
-description: Writes the copy of every step of every enrolled lead's plan (emails, LinkedIn invitation notes and messages), including follow-ups with leads who said "not now" and colleagues they referred. Reads the queue (copy_queue), writes one lead's plan as one story, checks a whole batch (check_copy) and writes it (write_copy), with a sample the person approves first. Use whenever a strategy has messages that need copy, after enrolling, when a lead is stuck for want of copy, or when a follow-up or referral waits for its first message.
+description: Writes the copy of every step of every enrolled lead's plan (emails, LinkedIn invitation notes and messages), including follow-ups with leads who said "not now" and colleagues they referred. Reads the queue (copy_queue), writes one lead's plan as one story, checks a whole batch (check_copy) and writes it (write_copy), with a sample the person approves first; sends a step to the person's own inbox as a test (test_copy), takes written copy back (clear_copy), and writes a strategy's sample emails for warm-up (write_samples). Use whenever a strategy has messages that need copy, after enrolling, when a lead is stuck for want of copy, when a follow-up or referral waits for its first message, or before a launch the person wants to see in their inbox.
 ---
 
 > In Claude Code, run every tool this skill names with the `dylan` command: `dylan call <tool> name=value`, its fields in `dylan tool <tool>`, signing in with `dylan login` (the `using-dylan` skill).
@@ -52,9 +52,27 @@ falls due holds the lead.
    the answer lists every problem per message. Fix and send the batch again.
 8. `preview_message` on the first lead of each persona and template: the message as sent (from, to,
    subject, body with signature, when). Read it as the recipient would.
+   Where the person wants to see it land, `test_copy` sends one written email step to their own
+   address, or a colleague's in their organisation (no one else): from the lead's mailbox, as their
+   sender, with the signature, a follow-up as the answer to the thread's first email. It is real
+   mail, so a yes first; a mailbox sends a few a day and the organisation a few an hour, and each
+   counts in the mailbox's day. Nothing of the lead's changes.
 9. Repeat until the queue is empty: `get_strategy` then shows copy for every step.
 
-A message can be rewritten until it is sending or sent.
+A message can be rewritten until it is sending or sent. To take a written message back to the
+queue instead (its step's guidance changed, the person wants it rethought), `clear_copy`: it waits
+for copy again, and a lead whose step falls due meanwhile is held for it, so write it again in the
+same session.
+
+## Sample emails for warm-up
+
+Warm-up carries a strategy's own text once its leads' copy is written. Before any lead is enrolled,
+or when the strategy's outreach goes out from another platform and it is never launched here,
+`write_samples` gives it sample emails instead: one per email step (`position`), written for no
+lead (no first name, no company), checked as a lead's email is, all or none. `newThread` marks a
+step that opens a thread of its own. `list_samples` reads them back with how often warm-up and
+placement tests carried each; `remove_sample` takes one out; `replace` writes a new set over the
+old. Nothing sends a sample to a lead, and launch still waits on every lead's own copy.
 
 ## What Dylan refuses
 
@@ -149,3 +167,5 @@ reply rates are read by angle.
 - A question with "or" in it, or a second question "to be safe".
 - `write_copy` without `check_copy` on the whole batch first.
 - A batch left half written at the end of a session: stuck leads the next morning.
+- A test sent to a lead or a stranger: `test_copy` goes to someone of the organisation only.
+- `clear_copy` on a step due soon and not written again: the lead is held.

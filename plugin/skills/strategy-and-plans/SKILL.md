@@ -1,6 +1,6 @@
 ---
 name: strategy-and-plans
-description: Builds a strategy (segments x personas x what we say x how we send) on what the person approved. Its brief and angles, channels chosen from evidence, plan templates and their steps, whether the senders can carry the goal, enrolling leads with a dry run first, getting it ready for the person to launch, and keeping it full and healthy afterwards. Use when creating or changing a strategy, setting plans, enrolling contacts, preparing a launch, or when a task says a strategy is below its target or unhealthy.
+description: Builds a strategy (segments x personas x what we say x how we send) on what the person approved. Its brief and angles, channels chosen from evidence, plan templates and their steps (whole, or one template or step at a time), companies kept out of it, whether the senders can carry the goal, enrolling leads with a dry run first, getting it ready for the person to launch, and keeping it full and healthy afterwards, down to archiving it. Use when creating or changing a strategy or its plans, enrolling contacts, preparing or taking back a launch, moving leads between mailboxes, or when a task says a strategy is below its target or unhealthy.
 ---
 
 > In Claude Code, run every tool this skill names with the `dylan` command: `dylan call <tool> name=value`, its fields in `dylan tool <tool>`, signing in with `dylan login` (the `using-dylan` skill).
@@ -72,7 +72,8 @@ first results can answer.
 ### 4. Set the plan templates, before the first enrolment
 
 `set_plans` replaces every template, and **is refused once any lead has a plan copied from them**.
-Settle the steps first. Shapes and examples: [references/plans.md](references/plans.md).
+Settle the steps first. Shapes and examples: [references/plans.md](references/plans.md). After the
+first enrolment the plans still change one piece at a time (section 10).
 
 - One template per channel mix, at most: `email_and_linkedin`, `email_only`, `linkedin_only`. Dylan picks per lead from its data: an address and a LinkedIn profile get `email_and_linkedin`
   (falling back to `email_only`, then `linkedin_only`, when that template is missing); an address
@@ -129,6 +130,16 @@ that every later batch is written by. Only then enrol and write the rest.
 
 After enrolling, every step of every lead needs copy: the `copywriting` guide, from `copy_queue`.
 
+### 6a. Keep companies out of this strategy
+
+A company that should not hear from this strategy but stays right for others (a current customer
+of one product line, a partner of one market) is kept out of the strategy alone:
+`exclude_companies`, each by its id or domain with the reason. Enrolment skips its people from
+then on, whoever is found there later too. People already in a plan there keep going: the answer
+says how many (`live`), to pause or stop with the person. `include_companies` lets one back in;
+`get_strategy` counts those kept out. A company nobody should write to goes on do-not-contact
+instead (`add_dnc`).
+
 ### 7. Ready, and the person launches
 
 `get_strategy` lists the checks before launch, and all must pass: plan templates with steps, senders
@@ -136,6 +147,10 @@ with an active mailbox, leads enrolled, copy for every step of them. Before aski
 launch, also check that the company's customer and competitor lists are on do-not-contact, and read
 a few messages end to end with `preview_message`. `launch_strategy` is the person's yes: after a
 short undo window Dylan sends every lead its steps, inside the limits. Nothing is sent before.
+Its answer counts the leads starting each day beside the daily limit: read it to the person at
+once. Within the undo window, before anything is sent, `unlaunch_strategy` takes the launch back
+(a first launch goes back to a draft, a resume after a pause back to paused); after it, only
+`pause_strategy` stops it.
 
 New leads enrolled into a running strategy start on their next window once their copy is ready, so
 write it in the same session.
@@ -160,6 +175,19 @@ Before calling a sender stuck, check: a mailbox sends only inside the window in 
 so a US project's mailboxes are quiet until the US morning; a mailbox on the ladder sends a trickle;
 a domain whose outreach is held (`get_warmup`) waits for its notes to come back to the inbox.
 
+**Leads waiting on their mailbox.** Each lead sends from one mailbox of its sender, picked at
+enrolment. When a mailbox is held, paused or full, or a new one was added after enrolment,
+`repick_mailboxes` picks again for every lead that has sent nothing: dry run first, read the moves
+and why, then the same without it. `even` spreads leads onto mailboxes that would send their first
+email sooner; `limit` with `stuck` fills a new mailbox a few days at a time. `changeSender` (or
+`toSender`) moves a lead to another sender of the strategy: its copy was written as the old sender
+and needs writing again, so say so to the person first. Dylan itself moves leads off a mailbox
+that will never send them.
+
+**Start dates.** Changing the send days or the stagger between colleagues spreads the starts again
+by itself. To spread them again by hand (after enrolling a large batch into a running strategy,
+say), `respread_starts` with a dry run first: starts move earlier as well as later.
+
 To see where one lead stands, `get_lead` with its enrollment from `list_leads`: every step and what
 became of it, why one was skipped or is stuck, what goes next and when, and its threads.
 
@@ -170,6 +198,31 @@ colleague, goes on by itself and is not let go by hand. A lead a reply stopped w
 needed nothing ("thanks, got it"), or one stopped as the wrong person who turns out to be at the
 company after all, goes back in its plan with `resume_lead` (a yes first: its steps go out again).
 To end one lead's plan, `stop_lead` with the reason; it cannot be undone.
+
+### 10. Changing plans after the first enrolment
+
+The templates are frozen once a lead has a plan copied from them, but each piece still changes, and
+reaches running leads:
+
+- `update_step`: one step's guidance or hypothesis (reaches every message not yet written), its
+  delay (every unsent message of it is timed again), an invitation with or without a note, or the
+  thread a follow-up email goes in. Step ids are in `get_strategy`.
+- `add_step`: a step after a given position, `plan` naming the template when there are several.
+  Every live lead that has sent nothing past that point gets it and needs copy (`copywriting`);
+  dry run first.
+- `remove_step`: the last step of a template, never its first. Its unsent messages are cancelled
+  and a lead whose next step it was ends there: a yes first.
+- `add_plan`: a template of a channel mix the strategy lacks (an `email_only` beside an
+  `email_and_linkedin`, for contacts with an address and no profile). Leads enrolled from then on
+  whose data picks it get it.
+
+A different shape of plan altogether is a new strategy.
+
+### 11. Retire it
+
+A strategy that is done (its market worked through, its offer replaced) is archived:
+`pause_strategy`, then `archive_strategy` with the person's yes. Its live leads stop and their
+contacts are free for another strategy; its history and figures stay. It cannot be undone.
 
 ## Record
 
@@ -191,3 +244,5 @@ To end one lead's plan, `stop_lead` with the reason; it cannot be undone.
 - Guidance that refers to a conditional step ("as I said on LinkedIn").
 - Skipping the dry run; reading "already in a live strategy" skips as failures.
 - Launching with the customer list still outstanding.
+- Moving leads to another sender without saying their copy is written again.
+- Archiving a strategy to change its plan: change the step (`update_step`, `add_step`) instead.

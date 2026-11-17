@@ -76,8 +76,22 @@ cap on notes will stop them after a handful.
 
 ## Changing plans later
 
-- The templates are frozen from the first enrolment. A new shape of plan is a new strategy, enrolled
-  into (one contact, one live strategy).
-- What a step says can still change: the strategy's brief and angles change with `update_strategy`,
-  and a `rule` note on the strategy tells every writer what to do differently. Messages already
-  written are rewritten with `write_copy` while they are not yet sent.
+- The templates are frozen from the first enrolment: `set_plans` is refused. Each piece still
+  changes, running leads included:
+  - `update_step` with the step id (from `get_strategy`): `guidance`, `hypothesis`, `delayDays`
+    (not the first step), `withoutNote` (an invitation), `newThread` or `threadOf` (a follow-up
+    email).
+  - `add_step` with `after` (the position it follows), the step as above, and `plan` when the
+    strategy has several templates; `dryRun` first. Leads that have sent nothing past that point get
+    it, needing copy.
+  - `remove_step` with the template's last step: its unsent messages are cancelled.
+  - `add_plan` with one template of a mix the strategy lacks.
+- A new shape of plan altogether is a new strategy, enrolled into (one contact, one live strategy).
+- What a step says can still change too: the strategy's brief and angles change with
+  `update_strategy`, and a `rule` note on the strategy tells every writer what to do differently.
+  Messages already written are rewritten with `write_copy` while they are not yet sent, or taken
+  back to the queue with `clear_copy`.
+
+```json
+{ "strategy": "…", "after": 3, "step": { "channel": "email", "delayDays": 5, "guidance": "Last touch, same thread. Ask for the call directly, or close politely." }, "dryRun": true }
+```
