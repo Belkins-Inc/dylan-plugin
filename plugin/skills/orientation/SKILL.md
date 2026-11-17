@@ -59,8 +59,8 @@ there is: positive answers go cold.
 | Orientation and memory | `list_projects`, `get_brief`, `get_setup`, `get_health`, `get_dashboard`, `get_spend`, `get_wallet`, `get_behaviour`, `list_tasks`, `open_task`, `close_task`, `add_note`, `ask_question`, `answer_question`, `list_hypotheses`, `add_hypothesis`, `update_hypothesis`, `end_session` | this one |
 | The project's set-up | `get_setup`, `skip_setup_step`, `set_time_zone`, `list_people`, `set_owner`, `set_goal` | this one |
 | What the company sells | `get_brief`, `save_brief`, `add_note`, `add_exclusion`, `add_dnc`, `list_dnc`, `ask_question` | `company-brief` |
-| Senders and channels | `list_senders`, `add_sender`, `update_sender`, `list_mailboxes`, `connect_mailbox`, `connect_smtp_mailbox`, `update_mailbox`, `get_warmup`, `set_warmup`, `get_domain_cap`, `set_domain_cap`, `list_linkedin_accounts`, `connect_linkedin` | `sending-setup`, `sender-signatures` |
-| Domains and mailboxes to buy | `list_domains`, `quote_domains`, `buy_domains`, `get_company_details`, `set_company_details`, `get_google_organisation`, `set_google_organisation`, `get_microsoft_tenant`, `accept_microsoft_agreement`, `leave_microsoft_tenant`, `order_mailboxes`, `list_mailbox_orders`, `transfer_domain`, `get_domain_dns`, `add_domain_record`, `delete_domain_record`, `set_domain_redirect` | `sending-setup` |
+| Senders and channels | `list_senders`, `add_sender`, `update_sender`, `list_sender_images`, `add_sender_image`, `remove_sender_image`, `get_sender_photo`, `set_sender_photo`, `list_shared_senders`, `add_shared_sender`, `share_sender`, `unshare_sender`, `list_mailboxes`, `connect_mailbox`, `connect_smtp_mailbox`, `update_mailbox`, `get_warmup`, `set_warmup`, `get_inbox_tests`, `get_domain_cap`, `set_domain_cap`, `list_linkedin_accounts`, `connect_linkedin` | `sending-setup`, `sender-signatures` |
+| Domains and mailboxes to buy | `list_domains`, `quote_domains`, `buy_domains`, `get_company_details`, `set_company_details`, `get_google_organisation`, `set_google_organisation`, `get_microsoft_tenant`, `accept_microsoft_agreement`, `leave_microsoft_tenant`, `order_mailboxes`, `list_mailbox_orders`, `cancel_mailbox_order`, `retry_mailbox_order`, `retry_domain`, `publish_dkim`, `set_dmarc`, `release_domain`, `transfer_domain`, `get_domain_dns`, `add_domain_record`, `delete_domain_record`, `set_domain_redirect` | `sending-setup` |
 | Which companies | `list_segments`, `save_segment`, `set_segment_status`, `list_sources`, `save_source`, `set_source_status`, `list_segment_companies`, `list_verdicts`, `save_companies`, `judge_companies` | `segment-design` |
 | Which people | `list_personas`, `save_persona` | `persona-design` |
 | Labels on companies and contacts | `list_labels`, `add_label`, `update_label`, `remove_label`, `apply_label`, `take_off_label` | this one |
@@ -83,9 +83,9 @@ first, in one or two lines, and wait for a yes.
 
 - **Spends money**: the paid search and lookup tools, `collect_emails`, `verify_email`,
   `check_address`, `read_page`, `match_person`, `enrich_company`, `look_up_companies`, `map_site`,
-  `order_reviews` and `collect_reviews`, `buy_domains`, `order_mailboxes`, `set_warmup`. What was
-  bought before is kept and answered free: look in the project's data and the cache first
-  (`data-sources`). Each tool's description gives its
+  `order_reviews` and `collect_reviews`, `buy_domains`, `order_mailboxes`, `retry_mailbox_order`,
+  `set_warmup`. What was bought before is kept and answered free: look in the project's data and
+  the cache first (`data-sources`). Each tool's description gives its
   price, and `quote_data` (free) gives the most a data call will cost for so many results; quote
   from them, never from memory. `get_spend` shows what was spent; `get_wallet` the balance, what
   is held costs a day, how many days it lasts and automatic top-up. Topping up, saving a card and
@@ -93,7 +93,8 @@ first, in one or two lines, and wait for a yes.
 - **Writes to people**: `launch_strategy`, `test_copy` (to someone of your organisation only), `approve_reply`, `book_meeting`, `move_meeting`,
   `cancel_meeting`, `reengage`, `refer`, `replace_address`, `unpause_lead`, `resume_lead`,
   `enroll_leads` on an active strategy.
-- **Cannot be undone**: `stop_lead`, `archive_strategy`, `remove_step`, `erase_person` (an admin's act: it forgets a person who asked
+- **Cannot be undone**: `release_domain` (the domain is gone once it expires),
+  `cancel_mailbox_order`, `stop_lead`, `archive_strategy`, `remove_step`, `erase_person` (an admin's act: it forgets a person who asked
   to be forgotten, across the organisation), `add_dnc`.
 
 A scheduled run of an agent, with nobody watching, is refused every destructive tool: it reads,

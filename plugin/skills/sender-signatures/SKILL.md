@@ -70,7 +70,38 @@ What every mail client renders the same way:
 </table>
 ```
 
-## 4. Set it and check it
+## 4. Pictures: a logo, a headshot
+
+A picture in the HTML signature is uploaded first and named by its `src`, never loaded from an
+address:
+
+1. `add_sender_image` with the file, base64-encoded: PNG, JPEG or GIF, 100 KB at most. It goes
+   inside every answer, so size it at twice what it shows at (a logo shown 120 px wide: 240 px)
+   and save it as JPEG. Dylan refuses another type, or a larger file, and says which.
+2. Name it in the HTML by the `src` the answer gives: `<img src="cid:…" width="120"
+   style="display:block" alt="Acme">`, with a width and an `alt`. Dylan sends the picture inside
+   each message.
+3. `list_sender_images` lists a sender's pictures; `remove_sender_image` removes one no signature
+   shows any more (change the signature first).
+
+**The photo** is something else: the face a lead's mail client shows beside the sender's name, not
+part of the signature. `set_sender_photo` with a square JPEG or PNG headshot (a 400 px square), or
+one of their pictures by its id (`image`); Dylan sets it on each of their mailboxes bought here and
+keeps at it until each shows it. `get_sender_photo` says where each mailbox stands: shown, waiting,
+refused (and why), or outside — a mailbox the person connected by sign-in or password, whose photo
+they set in the account themselves. `image: null` stops setting it.
+
+## 5. One person on several projects
+
+A sender added with `add_sender` belongs to its project. A person who writes for several of the
+organisation's projects is added once for the whole organisation with `add_shared_sender` (an
+organisation admin), then put on each project with `share_sender`: a title and signatures for that
+project (a different company line, a different booking link), or none to use their own, and
+`dailyShare`, the most that project takes a day from the mailboxes the sender shares across
+projects. Their pictures serve every project. `list_shared_senders` shows who writes where;
+`unshare_sender` takes them off a project once no strategy there writes as them.
+
+## 6. Set it and check it
 
 `add_sender` with `signature` and, if wanted, `signatureHtml`; for a sender already there,
 `update_sender` (`null` clears one). A change reaches every email not yet sent. Then, once a
@@ -85,3 +116,6 @@ the person that preview before any strategy sends with the sender.
 - A phone number or title guessed instead of asked.
 - An HTML signature that loads its logo from a web address: refused, and blocked by many clients
   anyway.
+- A logo uploaded at its full size: every answer carries it, and a heavy message reads as bulk.
+- The same person added on each project with `add_sender`: one shared sender, put on each project,
+  keeps their pictures and mailboxes in one place.
