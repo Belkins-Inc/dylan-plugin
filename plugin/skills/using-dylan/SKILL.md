@@ -65,8 +65,9 @@ from a file, a list one item a line (`excludeDomains=@held.txt`); `name:=@file.j
 | `--input <file>` | the input as a JSON object; fields given after it override it |
 | `--yes` | runs a tool that launches, sends, buys or spends — after the person's yes |
 
-A refusal is two lines, `dylan: <what went wrong>` and `hint: <what to do>`; do what the hint
-says. Exit code 1 is Dylan's refusal or a failed call, 2 a command written wrong.
+A refusal is `dylan: <what went wrong>` and `hint: <what to do>`, and when Dylan names more, a
+`details:` line of JSON (which rows of a batch were refused, and each one's problems); do what the
+hint says, fixing what the details name. Exit code 1 is Dylan's refusal or a failed call, 2 a command written wrong.
 
 ## Recipes
 

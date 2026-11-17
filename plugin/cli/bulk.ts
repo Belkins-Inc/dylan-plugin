@@ -86,6 +86,7 @@ export async function sendEach(
         e.hint,
         e.exitCode,
         e.code,
+        e.details,
       )
       return { answer: merge(answers), error: failed, calls: i, rows: sent }
     }

@@ -5,7 +5,7 @@ import { fetchWithin, QUICK_MS, TOOL_MS } from './net.ts'
 // Dylan's public API: the same tools as its MCP server, one POST each, the same answers and the
 // same refusals ({ error: { code, message, hint } }).
 
-export const VERSION = '0.1.3'
+export const VERSION = '0.1.4'
 
 /** A JSON Schema, as far as this command line reads one. */
 export type Schema = {
@@ -34,7 +34,7 @@ export type Tool = {
   }
 }
 
-type Refusal = { code?: string; message?: string; hint?: string }
+type Refusal = { code?: string; message?: string; hint?: string; details?: unknown }
 
 async function send(server: string, method: string, path: string, body: unknown, renew: boolean) {
   const token = await bearer(server, renew)
@@ -77,6 +77,7 @@ export async function request(server: string, method: string, path: string, body
       refusal.hint,
       1,
       refusal.code ?? String(res.status),
+      refusal.details,
     )
   }
   return parsed

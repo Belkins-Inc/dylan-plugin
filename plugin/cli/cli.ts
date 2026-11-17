@@ -301,6 +301,8 @@ if (isMain)
     if (error instanceof DylanError) {
       process.stderr.write(`dylan: ${error.message}\n`)
       if (error.hint) process.stderr.write(`hint: ${error.hint}\n`)
+      if (error.details !== undefined && error.details !== null)
+        process.stderr.write(`details: ${JSON.stringify(error.details)}\n`)
       process.exit(error.exitCode)
     }
     process.stderr.write(`dylan: ${(error as Error)?.stack ?? error}\n`)
