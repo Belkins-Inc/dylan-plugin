@@ -1,6 +1,6 @@
 ---
 name: orientation
-description: Start here, in every working session on a project. Picks the project, reads its state with get_brief, decides what to do first, keeps the project's memory with add_note and hands over with end_session. Also lists which tool does which job and which tools need the person's yes. Use at the start of any session, whenever the state of a project is in doubt, and before you stop.
+description: Start here, in every working session on a project. Picks the project, reads its state with get_brief, decides what to do first, keeps the project's memory with add_note and hands over with end_session. Also lists which tool does which job, which tools need the person's yes, how to count and break down the data with run_sql and how to report what is wrong or missing in Dylan. Use at the start of any session, whenever the state of a project is in doubt, when something in Dylan fails or is missing, and before you stop.
 ---
 
 > In Claude Code, run every tool this skill names with the `dylan` command: `dylan call <tool> name=value`, its fields in `dylan tool <tool>`, signing in with `dylan login` (the `using-dylan` skill).
@@ -71,6 +71,8 @@ there is: positive answers go cold.
 | Replies and meetings | `list_inbox`, `count_inbox`, `get_pipeline`, `get_thread`, `triage_reply`, `draft_reply`, `list_drafts`, `approve_reply`, `unapprove_reply`, `discard_reply`, `close_thread`, `reopen_thread`, `set_deal_stage`, `reengage`, `refer`, `list_meetings`, `list_calendars`, `list_free_times`, `offer_slots`, `booking_link`, `book_meeting`, `move_meeting`, `cancel_meeting`, `keep_meeting`, `retry_meeting`, `record_meeting_outcome` | `inbox-triage` |
 | Results | `get_dashboard`, `get_funnel`, `get_channels`, `list_strategies`, `get_strategy`, `list_leads`, `get_lead`, `get_spend` | `results-review` |
 | Privacy | `erase_person`, `list_erasures` | below |
+| Questions no tool answers | `get_schema`, `run_sql` | below |
+| What is wrong or missing in Dylan | `report_issue`, `list_issues`, `get_issue` | below |
 
 ## Ask the person first
 
@@ -102,6 +104,23 @@ Before answering any "what happens when..." question (a lead already connected o
 reply mid-plan, a mailbox at its limit, a paused strategy), read `get_behaviour`: without a topic
 it lists the topics, with one it gives that topic's entries. Answer from the entry and say which.
 If no entry covers it, say so plainly rather than guessing from tool names.
+
+## Questions no tool answers
+
+A count or a breakdown across the data (replies by angle, leads by segment and step, meetings by
+sender) is one `run_sql` select: read `get_schema` first for the tables and columns you may read,
+and name the columns you want. It reads your organisation's projects alone, read-only, up to 500
+rows and 5 seconds; a query that times out wants a narrower `where`. It never changes anything:
+every change goes through the tool for it, which keeps who did it and why.
+
+## When something in Dylan is wrong or missing
+
+A tool that fails, answers wrongly or refuses what it should do, a behaviour no entry explains, or
+a job no tool does: report it with `report_issue` (`bug`, `question` or `wish`), with the project,
+what you did, what you expected, what happened, and the tool, its input and its refusal in
+`context`. Do not route around it silently; tell the person you reported it and give the number.
+At the start of a session, `list_issues` shows what is still open; `get_issue` gives Dylan's answer
+once one is settled, and the work it unblocks can go on.
 
 ## Keeping the project's memory
 
@@ -168,3 +187,4 @@ you ran (`record_search`) and collect every address batch you started, or leave 
 - Contradicting a decision with a new note without `supersedes`: both then show.
 - Answering "what happens when..." from a guess instead of `get_behaviour`.
 - A summary like "worked on sourcing": say what, how many, what is left.
+- Working around a broken or missing tool without reporting it: the next session meets it again.
