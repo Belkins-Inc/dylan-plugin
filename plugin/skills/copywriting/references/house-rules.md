@@ -110,7 +110,8 @@ forward to hearing from you".
   sentences, no greeting line, no signature, no pitch, no ask beyond connecting. Invitations go
   without a note unless the step asks for one.
 - Message: at most 1,900 characters by Dylan; write two to four sentences. No subject, no
-  greeting line, no signature. One ask. Never assumes the emails arrived; never mentions them.
+  greeting line unless the strategy's guidance asks for one (`check_copy` warns on it), no
+  signature. One ask. Never assumes the emails arrived; never mentions them.
 
 ## Colleagues at one company (checked)
 

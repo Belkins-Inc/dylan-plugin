@@ -115,7 +115,8 @@ with examples in [references/examples.md](references/examples.md).
 
 - Invitation note: only on a step that asks for one. At most 200 characters (300 from an account with Premium); two short sentences;
   asks for nothing beyond connecting; no pitch.
-- Message: two to four sentences; no subject, no greeting line, no signature; one ask.
+- Message: two to four sentences; no subject, no greeting line unless the strategy's guidance asks
+  for one (`check_copy` warns on it), no signature; one ask.
 
 ## Angles
 
