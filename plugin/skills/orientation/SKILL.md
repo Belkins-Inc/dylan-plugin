@@ -72,6 +72,9 @@ there is: positive answers go cold.
 | Strategies and plans | `list_strategies`, `get_strategy`, `create_strategy`, `update_strategy`, `set_plans`, `add_plan`, `add_step`, `update_step`, `remove_step`, `exclude_companies`, `include_companies`, `stand_contacts`, `enroll_leads`, `launch_strategy`, `unlaunch_strategy`, `pause_strategy`, `archive_strategy`, `respread_starts`, `repick_mailboxes`, `list_leads`, `get_lead`, `pause_lead`, `unpause_lead`, `resume_lead`, `stop_lead` | `strategy-and-plans` |
 | Copy | `copy_queue`, `check_copy`, `write_copy`, `list_copy`, `clear_copy`, `preview_message`, `test_copy`, `list_samples`, `write_samples`, `remove_sample` | `copywriting` |
 | Replies and meetings | `list_inbox`, `count_inbox`, `get_pipeline`, `get_thread`, `triage_reply`, `draft_reply`, `list_drafts`, `approve_reply`, `unapprove_reply`, `discard_reply`, `close_thread`, `reopen_thread`, `set_deal_stage`, `reengage`, `refer`, `list_meetings`, `list_calendars`, `list_free_times`, `offer_slots`, `booking_link`, `book_meeting`, `move_meeting`, `cancel_meeting`, `keep_meeting`, `retry_meeting`, `record_meeting_outcome` | `inbox-triage` |
+| Drafts, threads and automatic answers | `revise_draft`, `list_draft_versions`, `assign_reviewer`, `reschedule_reply`, `retry_reply`, `redraft_from_mailbox`, `undo_triage`, `close_threads`, `forward_thread`, `list_attachments`, `refetch_message`, `pause_colleagues`, `list_reply_templates`, `approve_reply_template`, `archive_reply_template`, `remove_dnc`, `import_dnc` | `inbox-triage` |
+| Calendars and a meeting's record | `connect_calendar`, `add_external_calendar`, `update_calendar`, `archive_calendar`, `update_meeting`, `get_meeting_record` | `inbox-triage` |
+| Answers written on a schedule | `list_answers_waiting`, `ask_for_rewrite` | `writing-answers` |
 | Results | `get_dashboard`, `get_funnel`, `get_channels`, `list_strategies`, `get_strategy`, `list_leads`, `get_lead`, `get_spend` | `results-review` |
 | Privacy | `erase_person`, `list_erasures` | below |
 | Questions no tool answers | `get_schema`, `run_sql` | below |
@@ -92,7 +95,9 @@ first, in one or two lines, and wait for a yes.
   from them, never from memory. `get_spend` shows what was spent; `get_wallet` the balance, what
   is held costs a day, how many days it lasts and automatic top-up. Topping up, saving a card and
   setting automatic top-up are a person's, on the app's Wallet page: say so, do not try.
-- **Writes to people**: `launch_strategy`, `test_copy` (to someone of your organisation only), `approve_reply`, `book_meeting`, `move_meeting`,
+- **Writes to people**: `launch_strategy`, `test_copy` (to someone of your organisation only),
+  `approve_reply`, `retry_reply`, `forward_thread`, `approve_reply_template` (Dylan then answers by
+  itself), `book_meeting`, `move_meeting`,
   `cancel_meeting`, `reengage`, `refer`, `replace_address`, `unpause_lead`, `resume_lead`,
   `enroll_leads` on an active strategy.
 - **Cannot be undone**: `release_domain` (the domain is gone once it expires),
