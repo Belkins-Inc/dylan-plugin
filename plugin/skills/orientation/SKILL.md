@@ -65,6 +65,7 @@ there is: positive answers go cold.
 | Which people | `list_personas`, `save_persona` | `persona-design` |
 | Labels on companies and contacts | `list_labels`, `add_label`, `update_label`, `remove_label`, `apply_label`, `take_off_label` | this one |
 | Finding them | `count_companies`, `search_companies`, `count_people`, `search_people`, `enrich_profile`, `read_page`, `quote_data`, `record_search`, `get_provider_call`, `save_contacts`, `list_contacts` | `sourcing` |
+| Data: which tool, its price, the cache | `look_up_people`, `match_person`, `look_up_companies`, `enrich_company`, `map_site`, `order_reviews`, `check_reviews_order`, `collect_reviews`, `get_cached_person`, `get_cached_company`, `list_cached_people` | `data-sources` |
 | Addresses | `find_emails`, `collect_emails`, `verify_email`, `list_address_checks`, `check_address`, `replace_address` | `email-finding` |
 | Strategies and plans | `list_strategies`, `get_strategy`, `create_strategy`, `update_strategy`, `set_plans`, `add_plan`, `add_step`, `update_step`, `remove_step`, `exclude_companies`, `include_companies`, `stand_contacts`, `enroll_leads`, `launch_strategy`, `unlaunch_strategy`, `pause_strategy`, `archive_strategy`, `respread_starts`, `repick_mailboxes`, `list_leads`, `get_lead`, `pause_lead`, `unpause_lead`, `resume_lead`, `stop_lead` | `strategy-and-plans` |
 | Copy | `copy_queue`, `check_copy`, `write_copy`, `list_copy`, `clear_copy`, `preview_message`, `test_copy`, `list_samples`, `write_samples`, `remove_sample` | `copywriting` |
@@ -81,7 +82,10 @@ person before each call. Do not work around that: say what the call will do and 
 first, in one or two lines, and wait for a yes.
 
 - **Spends money**: the paid search and lookup tools, `collect_emails`, `verify_email`,
-  `check_address`, `read_page`, `buy_domains`, `order_mailboxes`, `set_warmup`. Each tool's description gives its
+  `check_address`, `read_page`, `match_person`, `enrich_company`, `look_up_companies`, `map_site`,
+  `order_reviews` and `collect_reviews`, `buy_domains`, `order_mailboxes`, `set_warmup`. What was
+  bought before is kept and answered free: look in the project's data and the cache first
+  (`data-sources`). Each tool's description gives its
   price, and `quote_data` (free) gives the most a data call will cost for so many results; quote
   from them, never from memory. `get_spend` shows what was spent; `get_wallet` the balance, what
   is held costs a day, how many days it lasts and automatic top-up. Topping up, saving a card and

@@ -18,6 +18,9 @@ gives the most a batch can cost; quote it before a batch, and tell the person wh
   and cost.
 - `list_personas`, and `get_strategy` for the strategy you are filling: its segments, its persona
   ladder in priority order, how many people per company.
+- **Before any paid call, what is already held**: the project's companies and contacts, earlier
+  calls (`get_provider_call`), and the shared cache (`get_cached_company`, `get_cached_person`,
+  `list_cached_people`), free. Which tool answers which question, and its price: `data-sources`.
 
 ## Where the next contacts come from: cheapest first
 
@@ -45,8 +48,9 @@ Decide before spending, and write the reason in one sentence (a note or the hand
   the next search picks up. A search not recorded is money nobody can see, and the next session
   pays for it again.
 - **Never pay twice.** The same search within a month is refused unless you ask for it again on
-  purpose; a page you paid for and lost is read back free with `get_provider_call`. A profile read
-  before is answered free.
+  purpose; a page you paid for and lost is read back free with `get_provider_call`. A profile read,
+  a person matched, a company enriched or a web page read before, by anyone, is answered free from
+  the cache (`cached: true`).
 - **One source, one query.** A different query is a different source, or the cursor means nothing.
 - Never invent a company, a person, a domain or a title. A company row without a domain is dropped.
 
@@ -72,7 +76,11 @@ Decide before spending, and write the reason in one sentence (a note or the hand
    titles. Search for the whole ladder at once.
 2. **Which companies**: qualified companies in the strategy's segments
    (`list_segment_companies`, status qualified) that have a LinkedIn page and no people for this
-   strategy yet. A company with no page cannot be searched inside: find its page first or leave it.
+   strategy yet. A company with no page cannot be searched inside: find its page first
+   (`get_cached_company` by domain, free; then `enrich_company`) or leave it. People bought there
+   before are listed free by `list_cached_people`: take those who fit before searching.
+   Another way in, when the segment is defined by industry, country and size: `look_up_people`
+   (free) with the ladder's titles, then `match_person` for those who fit (`data-sources`).
 3. **Search inside each company** with `search_people`, naming the company, about three times the
    strategy's people-per-company cap. Record each as a contacts search with the strategy and the
    company.
@@ -93,8 +101,36 @@ Decide before spending, and write the reason in one sentence (a note or the hand
 
 When a company cannot be judged from what is stored, or copy needs a real signal, read its own
 site. Your own web search is free: use it to find the page that holds the answer, then read that
-page. `read_page` reads one page as text for a small price. How to choose pages, and how to read a
-directory: [references/web-research.md](references/web-research.md).
+page. `read_page` reads one page as text for a small price, free when anyone read it in the last
+two weeks; `map_site` lists a site's pages when your search does not find the one you need. Size,
+locations, branches and the group a company belongs to come cheaper from `enrich_company` than
+from its pages. How to choose pages, and how to read a directory:
+[references/web-research.md](references/web-research.md).
+
+## D. Companies from Trustpilot reviews
+
+A company's own customers describing a problem is the strongest reason to write to it, and the
+review text is copy material nobody else has. The source is of kind `trustpilot`; what is bought is
+reviews, and companies come out of them. Ordering, checking and collecting, and what it costs:
+`data-sources`.
+
+1. **The source** (`save_source`, kind `trustpilot`), its query the filter without the limit, its
+   instructions what makes a qualified company and which signal to keep.
+2. **Order** a small first wave (`order_reviews`, 50 to 100 reviews), from the second wave
+   excluding the Trustpilot ids already held (the companies' "trustpilot_id" facts). Respect an
+   exclusion on rating. Leave the order id in a `todo` note.
+3. **Check, then collect** once (`check_reviews_order`, `collect_reviews`).
+4. **Record the search** with both call ids, the reviews and the companies new and held, and how
+   many reviews each company took ("wave 2: 100 reviews, 97 companies").
+5. **Save** each company: its domain, name, `source` trustpilot, and facts: "trustpilot_id",
+   "trustpilot_url", "trustpilot_category". The Trustpilot country is where it registered, not
+   always its head office: set the country only when the site plainly says it.
+6. **Judge** with the signal on the verdict: the rating as a number, the review count, the
+   category, the top complaint in the customers' words with how many of the reviews read say it,
+   one short quote. The complaint must connect to what the client sells; under about five recent
+   reviews is thin evidence — say so. Never invent a complaint or a quote.
+7. **Enrich** the kept ones: their LinkedIn page and size (`enrich_company`), so people can be
+   found inside.
 
 ## Before you stop
 
@@ -114,3 +150,5 @@ directory: [references/web-research.md](references/web-research.md).
 - Qualifying from the search's industry label alone.
 - Saving former employees, or people whose title only shares a word with the persona.
 - A search not recorded, so its cursor never moves and the next session pays for the same page.
+- Paying for a company, a person or a page the cache already holds.
+- Counting reviews as companies, or a Trustpilot country as the head office.

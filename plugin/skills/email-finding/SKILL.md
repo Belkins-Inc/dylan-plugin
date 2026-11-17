@@ -31,6 +31,10 @@ still be written to on LinkedIn.
 
 ## A. Addresses for new contacts
 
+The match goes first and the check decides: a match gives a candidate cheaply and is silent where
+it cannot tell; an address counts only once `verify_email` calls it `valid`. A batch search is the
+second try, for whom the match found nothing that checks out.
+
 1. **Who needs one**: the strategy's candidates with no address and no earlier attempt (the facts of
    each contact say whether an address was looked for before).
 2. **Hold out incomplete names before paying.** An address is built from a full name. A person whose
@@ -38,17 +42,23 @@ still be written to on LinkedIn.
    not submitted. Note it in their facts ("email search: name incomplete, last name 'A' on the
    profile, 2026-09-24"), then find the full name first (the profile, the company's team page) or
    work that person on LinkedIn only.
-3. **Start a batch** with `find_emails`: up to 100 people, each with first and last name, the
+3. **Match first, one at a time**, with `match_person`: by the contact's LinkedIn profile (or
+   `lookupId`) and name and employer, its `contactId` given. About 1¢ when matched, nothing when
+   not; a person matched in the last 30 days is answered free. Its `emailCandidate` is a candidate:
+   verify it (step 6). `catchAllDomain: true`: no check can confirm it, so do not pay to verify
+   it and do not save it — the person goes by LinkedIn (section B), with a note in their facts.
+   Everyone else the match left without a `valid` address goes on to the batch.
+4. **Start a batch** with `find_emails`: up to 100 people, each with first and last name, the
    company's domain and name, and the LinkedIn address when known. Starting is free; the tool's
    description says what each address found costs. Keep the request id it answers: leave it in a
    `todo` note ("Collect address batch <id>: <strategy>, <n> people") so another session can
    collect it, and supersede the note once collected.
-4. **Collect** with `collect_emails` and that request id a few minutes later; it says pending until
+5. **Collect** with `collect_emails` and that request id a few minutes later; it says pending until
    it is done. Match each answer to its person by name and LinkedIn address.
-5. **Verify every address found** with `verify_email`, one call each, tied to the contact. The
+6. **Verify every address found** with `verify_email`, one call each, tied to the contact. The
    answer maps to a status: deliverable is `valid`; undeliverable is `invalid`; risky (the domain
    accepts everything) is `catch_all`; anything else is `unknown`.
-6. **Save** with `save_contacts`, always including the LinkedIn address the contact already has, so
+7. **Save** with `save_contacts`, always including the LinkedIn address the contact already has, so
    the row updates that contact instead of making a second one: the address, its status, and the
    facts of the search ("found, verified deliverable 2026-10-07"). Save `invalid` addresses too, with
    their status, so nobody pays for them again. Read the warnings on each saved row: the profile stayed
@@ -56,7 +66,7 @@ still be written to on LinkedIn.
    `refused` names a contact that already has the address and is someone else by name or profile:
    the provider gave two people one address, nothing was saved, and this person's address is still
    to find. Only when it is the same person (a name corrected) send it again with `samePerson: true`.
-7. **Not found**: note it in the contact's facts ("not found, 2026-10-07"). There is no third try:
+8. **Not found**: note it in the contact's facts ("not found, 2026-10-07"). There is no third try:
    the person goes LinkedIn-only.
 
 **An address at another organisation is not the contact's address.** Deliverable says only that the
@@ -119,4 +129,6 @@ how their addresses were found before buying more the same way.
 - Choosing between two spellings on a catch-all domain because both "verified".
 - Reading risky as undeliverable: it means catch-all or unknown.
 - Verifying the same address twice in a month.
+- Saving a match's candidate address as `valid` without `verify_email`, or paying to verify one on
+  a domain the match called catch-all.
 - Emailing an address nobody checked because it "looks right".

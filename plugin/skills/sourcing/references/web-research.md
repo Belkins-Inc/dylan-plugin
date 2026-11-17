@@ -23,7 +23,8 @@ already in the company's facts.
 
 1. Read what is stored first (`list_segment_companies` with the domain as `q`).
 2. Pick at most three pages: the home page, then the one page most likely to hold the fact (about,
-   pricing, careers, contact, support). Use your own web search to find which.
+   pricing, careers, contact, support). Use your own web search to find which; when it finds none,
+   `map_site` (1¢) lists the site's pages with their titles — choose by title, not by position.
 3. `read_page` each, passing the company it is for.
 4. Save what you learned as facts with their source page (`save_companies`; facts merge into what is
    there): "sells: refurbished phones and accessories (from /about)", "support promise: replies
@@ -51,8 +52,9 @@ A site that does not load is a fact too: say so in the facts.
    - a person only where the page says who they work for, the employer as written; judge whether
      they belong on what the employer does for a living.
 6. **Resolve people**: a person named on a page needs a LinkedIn address or an email to be saved.
-   `count_people` and `search_people` by name and employer find the profile; a person who cannot be
-   found is not saved.
+   `match_person` by name and the employer's domain finds the profile (about 1¢, nothing when it
+   cannot tell); failing that, `search_people` by name and employer. A person who cannot be found
+   is not saved.
 7. **Record the search**: the pages read, companies found, how many new, the call ids.
 8. **Save and judge**, with the signal the page gave ("exhibitor at the 2026 trade show", "speaker
    on warehouse automation").
