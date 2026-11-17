@@ -1,6 +1,6 @@
 ---
 name: email-finding
-description: Finds and verifies work email addresses for the people a strategy will write to. Who needs one, holding out incomplete names, finding addresses in batches (find_emails, then collect_emails), verifying every address before it is used (verify_email), what each address status means, and what to do with catch-all, unknown and bounced addresses. Use when contacts need addresses or an address's status is in doubt.
+description: Finds and verifies work email addresses for the people a strategy will write to, and their phone numbers when the person wants calls. Who needs one, holding out incomplete names, finding addresses in batches (find_emails, then collect_emails), verifying every address before it is used (verify_email, check_address), what each address status means, what to do with catch-all, unknown and bounced addresses, and finding, checking and correcting phone numbers (find_phones, check_phone). Use when contacts need addresses or numbers, or an address's status is in doubt.
 ---
 
 > In Claude Code, run every tool this skill names with the `dylan` command: `dylan call <tool> name=value`, its fields in `dylan tool <tool>`, signing in with `dylan login` (the `using-dylan` skill).
@@ -26,8 +26,9 @@ still be written to on LinkedIn.
 ## Read first
 
 - `get_strategy`: its catch-all policy and personas.
-- `list_dnc`: do not pay for an address at a domain or of a person that is on do-not-contact, or for
-  a person already rejected for the strategy. Drop them from the batch first.
+- `check_dnc` (free) with the batch's addresses, domains and profiles: do not pay for an address at
+  a domain or of a person that is on do-not-contact, or for a person already rejected for the
+  strategy. Drop them from the batch first.
 
 ## A. Addresses for new contacts
 
@@ -57,7 +58,9 @@ second try, for whom the match found nothing that checks out.
    it is done. Match each answer to its person by name and LinkedIn address.
 6. **Verify every address found** with `verify_email`, one call each, tied to the contact. The
    answer maps to a status: deliverable is `valid`; undeliverable is `invalid`; risky (the domain
-   accepts everything) is `catch_all`; anything else is `unknown`.
+   accepts everything) is `catch_all`; anything else is `unknown`. For a contact already saved,
+   `check_address` with reason `new_contact` does the same check and keeps it with the contact
+   (`list_address_checks`); on the contact's own address its verdict becomes the contact's status.
 7. **Save** with `save_contacts`, always including the LinkedIn address the contact already has, so
    the row updates that contact instead of making a second one: the address, its status, and the
    facts of the search ("found, verified deliverable 2026-10-07"). Save `invalid` addresses too, with
@@ -87,6 +90,9 @@ guessed pattern (first.last@) as an address without a check that calls it delive
 - `catch_all`: the strategy's catch-all policy decides at enrolment. `linkedin_only` and `hold` go
   by LinkedIn when there is a profile; `hold` without one keeps the person held. `send` emails it
   anyway: that is the person's choice for the strategy, made with its risk said, not yours.
+- A catch-all contact's own address checked again (`check_address`, reason `catch_all`) answers
+  risky again while the domain takes everything; check again only when something changed (the
+  company moved its mail), not to hope for another answer.
 - **Two spellings on a catch-all domain is not an address.** When two sources give one person two
   addresses at the same domain and the domain accepts everything, verification accepts both and one
   goes nowhere. Never pick one: save the contact as `unknown` with both spellings in its facts, so
@@ -106,8 +112,8 @@ how their addresses were found before buying more the same way.
    `first`, `flast`, `firstlast`, `firstl`, `f.last`). Never the address that
    bounced. A changed domain (the company rebranded, the person moved) is a different question:
    check the company first.
-4. **Check each** with `check_address` (1¢ each, a yes first). Up to three per contact; a fourth is
-   refused. `valid` → step 5. `risky` means the domain takes everything: nothing confirms a guess
+4. **Check each** with `check_address` (1¢ each, a yes first; reason `bounce_replacement`, its
+   default). Up to three per contact; a fourth is refused. `valid` → step 5. `risky` means the domain takes everything: nothing confirms a guess
    there, so treat it as not confirmed.
 5. **Replace** with `replace_address`, after the person's yes: it sends. Only a `valid` address is
    taken. The step that bounced goes again to it a minute later, the lead's other email steps come
@@ -115,11 +121,37 @@ how their addresses were found before buying more the same way.
 6. **None confirmed** after three: let the email channel go. `close_task` as cancelled with a note
    that says so; the lead goes on by LinkedIn where its plan has LinkedIn steps.
 
+## D. Phone numbers (when the person wants calls)
+
+Numbers cost far more than addresses: look for them only when the person wants to call these
+people, and quote first (`quote_data` with `find_phones`).
+
+1. **Save the contacts first**, with their LinkedIn address: a number is matched to a person by
+   their profile, name, address and company as the project holds them.
+2. **`find_phones`** with up to 10 contacts at a time. It answers at once who was matched; their
+   numbers arrive by themselves, within minutes and sometimes an hour, onto each contact
+   (`list_phones`). A person matched with no number has none to be found there. A number on a
+   do-not-call registry arrives on do-not-contact too, and no call list takes it.
+3. **For those it found none for**, and only if the person wants to pay more: `find_emails` with
+   `phones: true` (and `emails: false` when their addresses are settled), then `collect_emails`; a
+   number found comes back with its person. Add it with `add_phones`.
+4. **Numbers from elsewhere** (the client's own list, a number on the company's site) go in with
+   `add_phones`: the number with its country code, its kind (`mobile`, `direct`, `company`,
+   `other`), where it came from, and `dnc: true` when the source says it is on a do-not-call
+   registry. Each goes after the contact's numbers already there. A number is never a fact of the
+   contact.
+5. **Check before anyone dials** (`check_phone`, a yes first): whether the number exists, its line
+   type and the name it is registered to. A number that does not exist is marked invalid; a
+   landline or VoIP number goes last in the dial order; `callerMatches` says whether the name is the
+   contact's. Check the numbers a call list will dial first, not every number found.
+6. **Correct** with `set_phone`: a dead number (state invalid, with why), the dial order (rank 1 is
+   dialled first), its kind.
+
 ## Before you stop
 
 - Collect every batch you started, or leave its request id in a `todo` note.
-- `end_session`: addresses found, valid, catch-all, unknown, invalid; what was spent; who went
-  LinkedIn-only for want of an address.
+- `end_session`: addresses found, valid, catch-all, unknown, invalid; numbers found and checked;
+  what was spent; who went LinkedIn-only for want of an address.
 
 ## Common mistakes
 
@@ -132,3 +164,6 @@ how their addresses were found before buying more the same way.
 - Saving a match's candidate address as `valid` without `verify_email`, or paying to verify one on
   a domain the match called catch-all.
 - Emailing an address nobody checked because it "looks right".
+- Counting a person as having no number while their numbers are still to arrive after
+  `find_phones`.
+- Writing a phone number into a contact's facts instead of `add_phones`.

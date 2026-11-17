@@ -124,7 +124,7 @@ by the order, and the order is the commitment:
    lost answer is read back free with `get_provider_call`.
 
 One order per project is open at a time: a second waits until the first is collected or failed.
-How a review becomes a company and a signal on a segment: `sourcing`, section D.
+How a review becomes a company and a signal on a segment: `sourcing`, section E.
 
 ## Before you stop
 

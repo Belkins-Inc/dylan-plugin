@@ -20,6 +20,11 @@ The answer says, per company, whether it was saved, or refused because it breaks
 the project (and which). A refused company keeps its earlier status; it is usually disqualified,
 with that rule as the reason.
 
+An exclusion taken back (`remove_exclusion`) stops refusing, but changes no verdict by itself.
+Find the companies disqualified with that rule as the reason (`list_segment_companies` with status
+disqualified, then `list_verdicts`), and judge each again on what is known now. An exclusion added
+later lists, in its answer, the companies already qualified that break it: judge those again too.
+
 ## Verdicts
 
 | Status | When |

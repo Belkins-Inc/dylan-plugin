@@ -19,6 +19,7 @@ runs until the person has approved the brief, the titles and the segment with it
 ## Read first
 
 - `get_brief`: what the company sells and to whom, its rules and exclusions, decisions.
+  `list_exclusions` gives each exclusion with its id.
 - `list_segments` and `list_sources`: what exists, what each source found and cost, and where each
   source's searches stopped. Never pay for a search that already ran; continue from its cursor.
 - Decisions in the brief: whether this market was already approved.
@@ -47,7 +48,11 @@ runs until the person has approved the brief, the titles and the segment with it
    without re-deriving it.
 4. **Check the hard rules** in the brief (exclusions and `rule` notes): which countries, sizes,
    industries or business models are out. Put them into the query where the search can filter on
-   them, so you do not pay for rows nobody may qualify.
+   them, so you do not pay for rows nobody may qualify. A hard rule the person states that is not
+   an exclusion yet becomes one (`add_exclusion`); one that turns out wrong (mistyped, too wide, no
+   longer theirs) is taken back with `remove_exclusion` after the person's yes, never worked
+   around. Taking one back does not requalify anything: the companies it disqualified are judged
+   again (references/judging.md).
 5. **Size with free counts: companies and people.** `count_companies` is free: count the segment's
    companies with the source's query and set the estimate on the segment and the source (the real
    number, never a round guess). Then `count_people` with the persona's titles against the same

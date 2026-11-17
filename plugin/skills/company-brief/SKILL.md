@@ -71,13 +71,14 @@ answer goes in with `answer_question` and into the brief.
    - current customers, competitors, partners, and everyone who opted out before: `add_dnc` by
      `email` or `domain`, with the reason that fits (`existing_customer`, `competitor`,
      `client_request`, `unsubscribed`, `complaint`, `bounced`). Nothing is ever written to them.
-     `list_dnc` shows what is there. Ask for the customer list before the first launch: launching
+     `list_dnc` shows what is there; `check_dnc` says which of a list it blocks. Ask for the customer list before the first launch: launching
      without it is how a company's own customers get cold email.
    - hard rules on who is out (a country, an industry, a size, a business model): `add_exclusion`
      per rule, with the company's words and the source in its note. `judge_companies` refuses to
      qualify a company that breaks one, and the answer lists companies already qualified that break
      it, to judge again. A rule no kind can hold (`other`) is kept the same way, but nothing checks
-     it but you on every verdict.
+     it but you on every verdict. `list_exclusions` reads them back; one recorded wrongly is taken
+     back with `remove_exclusion` (`segment-design`).
    - constraints on how we write or send (topics to avoid, claims never to make, tone): a `rule`
      note each, so every writer follows it.
    - choices made with the person (markets in or out, priorities, the offer): a `decision` note.

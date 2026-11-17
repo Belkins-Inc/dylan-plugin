@@ -1,6 +1,6 @@
 ---
 name: sourcing
-description: Finds the companies of an approved segment and the people inside them. Counts first (free), searches a page at a time from where the last search stopped, records every search with its cost, saves and judges companies, keeps only the people who fit a persona, and reads company sites and directories for the facts and signals copy needs. Use when a segment needs companies, a strategy needs people at qualified companies, or a company cannot be judged from what is stored.
+description: Finds the companies of an approved segment and the people inside them. Counts first (free), searches a page at a time from where the last search stopped, records every search with its cost, saves and judges companies, keeps only the people who fit a persona, and reads company sites and directories for the facts and signals copy needs; keeps the people straight (duplicates merged, departures marked, employers checked). Use when a segment needs companies, a strategy needs people at qualified companies, or a company cannot be judged from what is stored.
 ---
 
 > In Claude Code, run every tool this skill names with the `dylan` command: `dylan call <tool> name=value`, its fields in `dylan tool <tool>`, signing in with `dylan login` (the `using-dylan` skill).
@@ -97,7 +97,28 @@ Decide before spending, and write the reason in one sentence (a note or the hand
 8. A saved person who turns out wrong for the strategy is marked rejected with the reason, and never
    looked at again.
 
-## C. Facts and signals from the web
+## C. Keeping people straight
+
+- **Before paying for people at a company**, `check_dnc` (free) with its domain: a company on
+  do-not-contact is never written to, so never sourced.
+- **One person saved twice** (two addresses, or a profile and no profile, at one company):
+  `list_duplicate_contacts` lists them, those with a live lead first. Show the person each group
+  and merge on their yes with `merge_contacts`: the contact that stays is the one with the
+  profile, the checked address or the lead further along. When both have a live lead the merge
+  stops one: run it with `dryRun` first, and name the lead to stop (the refusal suggests the one
+  that has sent less). Save every person with their LinkedIn address so it does not happen again.
+- **Someone who left the company** (their profile shows another employer, a reply said so):
+  `mark_departed` with how you know. No strategy enrols them again; a live lead of theirs is named,
+  not stopped (`stop_lead` it if it should end). Where they went is a new contact at the new
+  company, saved with `save_contacts` and judged there like anyone else.
+- **Whether they still work there**, before a strategy writes to someone found long ago:
+  `check_employer` reads their profile now (a yes first; it costs a profile read). current goes on;
+  departed is marked for you; unconfirmed holds their leads, and its note says why. When the person
+  knows better (the company's team page lists them), `check_employer` with `confirm` and how they
+  know lets the held leads go; `unconfirm` takes a confirmation back, and with `clearLinkedin` takes
+  off a profile that is a namesake's.
+
+## D. Facts and signals from the web
 
 When a company cannot be judged from what is stored, or copy needs a real signal, read its own
 site. Your own web search is free: use it to find the page that holds the answer, then read that
@@ -107,7 +128,7 @@ locations, branches and the group a company belongs to come cheaper from `enrich
 from its pages. How to choose pages, and how to read a directory:
 [references/web-research.md](references/web-research.md).
 
-## D. Companies from Trustpilot reviews
+## E. Companies from Trustpilot reviews
 
 A company's own customers describing a problem is the strongest reason to write to it, and the
 review text is copy material nobody else has. The source is of kind `trustpilot`; what is bought is
@@ -152,3 +173,5 @@ reviews, and companies come out of them. Ordering, checking and collecting, and 
 - A search not recorded, so its cursor never moves and the next session pays for the same page.
 - Paying for a company, a person or a page the cache already holds.
 - Counting reviews as companies, or a Trustpilot country as the head office.
+- Merging two contacts on a hunch: only the person can say they are one person.
+- Marking someone departed without saying how you know.

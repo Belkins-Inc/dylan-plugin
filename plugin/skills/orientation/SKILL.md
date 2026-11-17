@@ -58,15 +58,17 @@ there is: positive answers go cold.
 | --- | --- | --- |
 | Orientation and memory | `list_projects`, `get_brief`, `get_setup`, `get_health`, `get_dashboard`, `get_spend`, `get_wallet`, `get_behaviour`, `list_tasks`, `open_task`, `close_task`, `add_note`, `ask_question`, `answer_question`, `list_hypotheses`, `add_hypothesis`, `update_hypothesis`, `end_session` | this one |
 | The project's set-up | `get_setup`, `skip_setup_step`, `set_time_zone`, `list_people`, `set_owner`, `set_goal` | this one |
-| What the company sells | `get_brief`, `save_brief`, `add_note`, `add_exclusion`, `add_dnc`, `list_dnc`, `ask_question` | `company-brief` |
+| What the company sells | `get_brief`, `save_brief`, `add_note`, `list_exclusions`, `add_exclusion`, `remove_exclusion`, `add_dnc`, `list_dnc`, `check_dnc`, `ask_question` | `company-brief`, `segment-design` |
 | Senders and channels | `list_senders`, `add_sender`, `update_sender`, `list_sender_images`, `add_sender_image`, `remove_sender_image`, `get_sender_photo`, `set_sender_photo`, `list_shared_senders`, `add_shared_sender`, `share_sender`, `unshare_sender`, `list_mailboxes`, `connect_mailbox`, `connect_smtp_mailbox`, `update_mailbox`, `get_warmup`, `set_warmup`, `get_inbox_tests`, `get_domain_cap`, `set_domain_cap`, `list_linkedin_accounts`, `connect_linkedin` | `sending-setup`, `sender-signatures` |
 | Domains and mailboxes to buy | `list_domains`, `quote_domains`, `buy_domains`, `get_company_details`, `set_company_details`, `get_google_organisation`, `set_google_organisation`, `get_microsoft_tenant`, `accept_microsoft_agreement`, `leave_microsoft_tenant`, `order_mailboxes`, `list_mailbox_orders`, `cancel_mailbox_order`, `retry_mailbox_order`, `retry_domain`, `publish_dkim`, `set_dmarc`, `release_domain`, `transfer_domain`, `get_domain_dns`, `add_domain_record`, `delete_domain_record`, `set_domain_redirect` | `sending-setup` |
 | Which companies | `list_segments`, `save_segment`, `set_segment_status`, `list_sources`, `save_source`, `set_source_status`, `list_segment_companies`, `list_verdicts`, `save_companies`, `judge_companies` | `segment-design` |
 | Which people | `list_personas`, `save_persona` | `persona-design` |
 | Labels on companies and contacts | `list_labels`, `add_label`, `update_label`, `remove_label`, `apply_label`, `take_off_label` | this one |
 | Finding them | `count_companies`, `search_companies`, `count_people`, `search_people`, `enrich_profile`, `read_page`, `quote_data`, `record_search`, `get_provider_call`, `save_contacts`, `list_contacts` | `sourcing` |
+| Keeping people straight | `list_duplicate_contacts`, `merge_contacts`, `mark_departed`, `check_employer` | `sourcing` |
 | Data: which tool, its price, the cache | `look_up_people`, `match_person`, `look_up_companies`, `enrich_company`, `map_site`, `order_reviews`, `check_reviews_order`, `collect_reviews`, `get_cached_person`, `get_cached_company`, `list_cached_people` | `data-sources` |
 | Addresses | `find_emails`, `collect_emails`, `verify_email`, `list_address_checks`, `check_address`, `replace_address` | `email-finding` |
+| Phone numbers | `find_phones`, `list_phones`, `add_phones`, `set_phone`, `check_phone` | `email-finding` |
 | Strategies and plans | `list_strategies`, `get_strategy`, `create_strategy`, `update_strategy`, `set_plans`, `add_plan`, `add_step`, `update_step`, `remove_step`, `exclude_companies`, `include_companies`, `stand_contacts`, `enroll_leads`, `launch_strategy`, `unlaunch_strategy`, `pause_strategy`, `archive_strategy`, `respread_starts`, `repick_mailboxes`, `list_leads`, `get_lead`, `pause_lead`, `unpause_lead`, `resume_lead`, `stop_lead` | `strategy-and-plans` |
 | Copy | `copy_queue`, `check_copy`, `write_copy`, `list_copy`, `clear_copy`, `preview_message`, `test_copy`, `list_samples`, `write_samples`, `remove_sample` | `copywriting` |
 | Replies and meetings | `list_inbox`, `count_inbox`, `get_pipeline`, `get_thread`, `triage_reply`, `draft_reply`, `list_drafts`, `approve_reply`, `unapprove_reply`, `discard_reply`, `close_thread`, `reopen_thread`, `set_deal_stage`, `reengage`, `refer`, `list_meetings`, `list_calendars`, `list_free_times`, `offer_slots`, `booking_link`, `book_meeting`, `move_meeting`, `cancel_meeting`, `keep_meeting`, `retry_meeting`, `record_meeting_outcome` | `inbox-triage` |
@@ -82,7 +84,7 @@ person before each call. Do not work around that: say what the call will do and 
 first, in one or two lines, and wait for a yes.
 
 - **Spends money**: the paid search and lookup tools, `collect_emails`, `verify_email`,
-  `check_address`, `read_page`, `match_person`, `enrich_company`, `look_up_companies`, `map_site`,
+  `check_address`, `check_employer`, `find_phones`, `check_phone`, `read_page`, `match_person`, `enrich_company`, `look_up_companies`, `map_site`,
   `order_reviews` and `collect_reviews`, `buy_domains`, `order_mailboxes`, `retry_mailbox_order`,
   `set_warmup`. What was bought before is kept and answered free: look in the project's data and
   the cache first (`data-sources`). Each tool's description gives its
@@ -95,7 +97,8 @@ first, in one or two lines, and wait for a yes.
   `enroll_leads` on an active strategy.
 - **Cannot be undone**: `release_domain` (the domain is gone once it expires),
   `cancel_mailbox_order`, `stop_lead`, `archive_strategy`, `remove_step`, `erase_person` (an admin's act: it forgets a person who asked
-  to be forgotten, across the organisation), `add_dnc`.
+  to be forgotten, across the organisation), `add_dnc`, `merge_contacts` (only the person can say two contacts are one
+  person).
 
 A scheduled run of an agent, with nobody watching, is refused every destructive tool: it reads,
 triages, drafts and keeps notes, and leaves the rest to a person's session.
