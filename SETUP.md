@@ -117,14 +117,17 @@ dylan call list_projects
 
 ## 4. Done — the guide
 
-Setup is finished when steps 1–3 pass. End with one message to the person, in their language, that
-holds the two parts below — short lines and lists, no paragraphs of prose. Leave out anything that
-does not apply to them.
+Setup is finished when steps 1–3 pass. Before the last message, make the folder their work will
+live in — do not ask, it is part of the setup: `mkdir -p ~/work/dylan` (keep a folder they already
+named instead), then `cd ~/work/dylan && pwd` for its full path.
+
+End with one message to the person, in their language, that holds the two parts below — short lines
+and lists, no paragraphs of prose. Leave out anything that does not apply to them.
 
 ### What to do next
 
-1. **Start a new Claude Code session** (so the plugin's skills and `dylan` are loaded), in a folder
-   of their own for this work, for example `~/work/dylan`.
+1. **Start a new Claude Code session** (so the plugin's skills and `dylan` are loaded) and pick the
+   folder you made — give its full path. This session cannot move there; only a new one can.
 2. **Say what you want to work on** — for example "Let's work on my Dylan project". The agent
    lists their projects, reads the one they pick and says what to do first. List the projects from
    step 3 by name so they can pick one.
