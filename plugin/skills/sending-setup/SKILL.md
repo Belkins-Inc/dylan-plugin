@@ -58,11 +58,14 @@ email goes from lookalike domains that redirect to the company's site, a few mai
 4. Bought Google mailboxes live in a Google Workspace organisation of the company's own, made with
    the first domain. `get_google_organisation` says how far it is and what it waits for:
    - the company details, given once with `set_company_details` (before or after the first
-     purchase): legal name, website, postal address, phone, and the contact who receives Google's
-     first admin login and the providers' notices — an address the company reads today, never one
-     on a domain being bought. They serve Microsoft too; `get_company_details` says what is still missing;
-   - then one link for the organisation's admin to open, signed in as that admin, to accept
-     Google's terms. Only the person can do this: give them the link and say what it is.
+     purchase): legal name, website, postal address, phone, and the contact the providers write
+     to — an address the company reads today, never one on a domain being bought. They serve
+     Microsoft too; `get_company_details` says what is still missing;
+   - then nothing for the person to do: Dylan makes the organisation and sets it up by itself.
+     Once it is ready the company has a super admin of its own there (`owner`): an organisation
+     admin takes its password once with `get_google_admin_login` — give it to the person at once,
+     since it is not kept, and tell them to sign in at admin.google.com, where Google asks for
+     their own password. Dylan keeps its own admin and delegation there to do its work.
 
    Microsoft mailboxes, where `get_microsoft_tenant` says they are sold (`sold`), live in a
    Microsoft 365 tenant of the company's own, made for it by Dylan as its Microsoft reseller with the first
