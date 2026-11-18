@@ -58,9 +58,9 @@ email goes from lookalike domains that redirect to the company's site, a few mai
 4. Bought Google mailboxes live in a Google Workspace organisation of the company's own, made with
    the first domain. `get_google_organisation` says how far it is and what it waits for:
    - the company details, given once with `set_company_details` (before or after the first
-     purchase): legal name, website, postal address, phone, and the contact who receives the
-     tenants' first admin logins — an address the company reads today, never one on a domain being
-     bought. They serve Microsoft too; `get_company_details` says what is still missing;
+     purchase): legal name, website, postal address, phone, and the contact who receives Google's
+     first admin login and the providers' notices — an address the company reads today, never one
+     on a domain being bought. They serve Microsoft too; `get_company_details` says what is still missing;
    - then one link for the organisation's admin to open, signed in as that admin, to accept
      Google's terms. Only the person can do this: give them the link and say what it is.
 
@@ -73,12 +73,14 @@ email goes from lookalike domains that redirect to the company's site, a few mai
      the name and work address of the person who accepted — Microsoft is told they signed it;
    - the same company details as for Google, with the website and phone too.
 
-   Then `get_microsoft_tenant` follows it: Microsoft mails the tenant's first admin login to the
-   company's contact, and the person who bought gets one link to open, signed in with that login,
-   to accept Dylan in the tenant. Only the person can do this: give them the link, say what Dylan
-   asks for there (managing the tenant's domains and mailboxes, and sending from them) and that
-   they can remove it at any time. `leave_microsoft_tenant` (an organisation admin) takes Dylan out
-   again; the tenant and its mailboxes stay the company's.
+   Then `get_microsoft_tenant` follows it: Dylan orders the tenant and sets it up by itself, with
+   nothing for the person to do. Once it is ready, the company has a Global Administrator of its
+   own there (`admin`): an organisation admin takes its password once with
+   `get_microsoft_admin_login` — give it to the person at once, since it is not kept, and tell them
+   to sign in at admin.microsoft.com, where Microsoft asks for their own password and an
+   authenticator. Dylan keeps an admin and an app of its own in the tenant to do its work.
+   `leave_microsoft_tenant` (an organisation admin) takes Dylan out again; the tenant and its
+   mailboxes stay the company's.
 5. `order_mailboxes` on a domain: up to five, each a first name, a last name and a username
    (`jane`, `jane.doe`), tied to the sender who signs as them. Each mailbox is a seat paid monthly,
    so order what the plan needs (`strategy-and-plans`, capacity), not a stock. The person approves
