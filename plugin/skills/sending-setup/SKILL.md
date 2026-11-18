@@ -40,7 +40,10 @@ email goes from lookalike domains that redirect to the company's site, a few mai
   `acme-team.com`. Readable aloud, no digits, no misspelling of the brand.
 - `.com` first; `.co`, `.io` or `.net` when it is gone. Never the cheap zones (`.xyz`, `.top`,
   `.online`): filters already distrust them.
-- At most five mailboxes on one domain. More volume is more domains, not more mailboxes on one.
+- Five mailboxes on one domain: the practice to plan by and to offer. More volume is more domains,
+  not more mailboxes on one. A person who wants more on a domain gets them: say once why five
+  (one domain's reputation, and the daily domain cap, are shared by all its mailboxes), then order
+  what they asked.
 - Buy about four weeks before the volume is needed: new mailboxes climb slowly (section 4).
 
 ### Buying
@@ -84,7 +87,7 @@ email goes from lookalike domains that redirect to the company's site, a few mai
    authenticator. Dylan keeps an admin and an app of its own in the tenant to do its work.
    `leave_microsoft_tenant` (an organisation admin) takes Dylan out again; the tenant and its
    mailboxes stay the company's.
-5. `order_mailboxes` on a domain: up to five, each a first name, a last name and a username
+5. `order_mailboxes` on a domain: five unless the person wants more, each a first name, a last name and a username
    (`jane`, `jane.doe`), tied to the sender who signs as them. Each mailbox is a seat paid monthly,
    so order what the plan needs (`strategy-and-plans`, capacity), not a stock. The person approves
    the order. Dylan makes and connects them: `list_mailbox_orders` follows each order (and says
