@@ -79,8 +79,9 @@ cap on notes will stop them after a handful.
 - The templates are frozen from the first enrolment: `set_plans` is refused. Each piece still
   changes, running leads included:
   - `update_step` with the step id (from `get_strategy`): `guidance`, `hypothesis`, `delayDays`
-    (not the first step), `withoutNote` (an invitation), `newThread` or `threadOf` (a follow-up
-    email).
+    (not the first step), `withoutNote` (an invitation), `withdrawAfterDays` (an invitation:
+    withdraw it when still unaccepted after 1 to 30 days, invitations already out included; null
+    to stop), `newThread` or `threadOf` (a follow-up email).
   - `add_step` with `after` (the position it follows), the step as above, and `plan` when the
     strategy has several templates; `dryRun` first. Leads that have sent nothing past that point get
     it, needing copy.
