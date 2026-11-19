@@ -21,6 +21,12 @@ Never assume an earlier session did or did not do something: read it.
    a project by its slug. If the person did not say which project, ask; never pick one for them.
    Once chosen, name it back in one line ("Working on Northwind (northwind).") so a wrong pick is
    caught before anything is done on it.
+   No project yet, or the work is for a product, market or brand none of them is for: say so, and
+   with the person's name for it make one with `create_project` (its time zone too, if they gave
+   it). A project is a product, market or brand, or one per client for an agency; never one per
+   campaign, segment or experiment, which live inside a project as strategies and segments. Only
+   an admin of the organisation may create one; a member is refused and asks an admin. Its answer
+   carries the new slug and its page in Dylan's app; give the person the link.
 2. `get_brief`: read all of it before doing anything (below).
 3. `get_setup` on a new project: what still stands between it and its first send (senders,
    mailboxes, calendars, goals), and for each step the request to work from. The owner and the time
@@ -56,7 +62,7 @@ there is: positive answers go cold.
 
 | Job | Tools | Guide |
 | --- | --- | --- |
-| Orientation and memory | `list_projects`, `get_brief`, `get_setup`, `get_health`, `get_dashboard`, `get_spend`, `get_wallet`, `get_behaviour`, `list_tasks`, `open_task`, `close_task`, `add_note`, `ask_question`, `answer_question`, `list_hypotheses`, `add_hypothesis`, `update_hypothesis`, `end_session` | this one |
+| Orientation and memory | `list_projects`, `create_project`, `get_brief`, `get_setup`, `get_health`, `get_dashboard`, `get_spend`, `get_wallet`, `get_behaviour`, `list_tasks`, `open_task`, `close_task`, `add_note`, `ask_question`, `answer_question`, `list_hypotheses`, `add_hypothesis`, `update_hypothesis`, `end_session` | this one |
 | The project's set-up | `get_setup`, `skip_setup_step`, `set_time_zone`, `list_people`, `set_owner`, `set_goal` | this one |
 | What the company sells | `get_brief`, `save_brief`, `add_note`, `list_exclusions`, `add_exclusion`, `remove_exclusion`, `add_dnc`, `list_dnc`, `check_dnc`, `ask_question` | `company-brief`, `segment-design` |
 | Senders and channels | `list_senders`, `add_sender`, `update_sender`, `list_sender_images`, `add_sender_image`, `remove_sender_image`, `get_sender_photo`, `set_sender_photo`, `list_shared_senders`, `add_shared_sender`, `share_sender`, `unshare_sender`, `list_mailboxes`, `connect_mailbox`, `connect_smtp_mailbox`, `update_mailbox`, `get_warmup`, `get_inbox_tests`, `get_domain_cap`, `set_domain_cap`, `list_linkedin_accounts`, `connect_linkedin` | `sending-setup`, `sender-signatures` |

@@ -112,8 +112,10 @@ dylan call list_projects
 
 - `whoami` shows their address and organisation: signed in.
 - A refusal to sign in first: back to step 2.
-- `list_projects` is empty: they make their first project in Dylan's app (Projects → New project),
-  or you name one with them and they make it there.
+- `list_projects` is empty: ask what their first project is for (a product, market or brand, or
+  a client of an agency) and what to call it, then make it: `dylan call create_project name="<name>"`.
+  Only an admin of the organisation may; a member is refused and asks an admin, or the admin makes
+  it in Dylan's app (Projects → New project).
 
 ## 4. Done — the guide
 
