@@ -102,8 +102,9 @@ email goes from lookalike domains that redirect to the company's site, a few mai
      again. Then retry its failed orders.
 6. A bought domain's DNS is the company's to add to: `get_domain_dns` lists its records (each with
    its id) and redirects, `add_domain_record` adds one (a site verification, a subdomain pointed
-   somewhere) and `delete_domain_record` deletes one. The mail setup Dylan keeps (MX, SPF, DKIM,
-   DMARC) is marked `sending` and refused either way. `set_domain_redirect` moves the redirect to
+   somewhere, a subdomain's MX for a service that sends from it, such as a bounce domain, priority
+   10 unless given) and `delete_domain_record` deletes one. The mail setup Dylan keeps (the
+   domain's own MX, SPF, DKIM, DMARC) is marked `sending` and refused either way. `set_domain_redirect` moves the redirect to
    another site, or removes it with `url: null`.
 7. Its mail records. Dylan writes MX, SPF and DMARC itself, and DKIM for Microsoft domains.
    - **DKIM for a Google domain** is minted in the organisation's Google Admin console (Apps →
