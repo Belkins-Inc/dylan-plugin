@@ -59,7 +59,7 @@ there is: positive answers go cold.
 | Orientation and memory | `list_projects`, `get_brief`, `get_setup`, `get_health`, `get_dashboard`, `get_spend`, `get_wallet`, `get_behaviour`, `list_tasks`, `open_task`, `close_task`, `add_note`, `ask_question`, `answer_question`, `list_hypotheses`, `add_hypothesis`, `update_hypothesis`, `end_session` | this one |
 | The project's set-up | `get_setup`, `skip_setup_step`, `set_time_zone`, `list_people`, `set_owner`, `set_goal` | this one |
 | What the company sells | `get_brief`, `save_brief`, `add_note`, `list_exclusions`, `add_exclusion`, `remove_exclusion`, `add_dnc`, `list_dnc`, `check_dnc`, `ask_question` | `company-brief`, `segment-design` |
-| Senders and channels | `list_senders`, `add_sender`, `update_sender`, `list_sender_images`, `add_sender_image`, `remove_sender_image`, `get_sender_photo`, `set_sender_photo`, `list_shared_senders`, `add_shared_sender`, `share_sender`, `unshare_sender`, `list_mailboxes`, `connect_mailbox`, `connect_smtp_mailbox`, `update_mailbox`, `get_warmup`, `set_warmup`, `get_inbox_tests`, `get_domain_cap`, `set_domain_cap`, `list_linkedin_accounts`, `connect_linkedin` | `sending-setup`, `sender-signatures` |
+| Senders and channels | `list_senders`, `add_sender`, `update_sender`, `list_sender_images`, `add_sender_image`, `remove_sender_image`, `get_sender_photo`, `set_sender_photo`, `list_shared_senders`, `add_shared_sender`, `share_sender`, `unshare_sender`, `list_mailboxes`, `connect_mailbox`, `connect_smtp_mailbox`, `update_mailbox`, `get_warmup`, `get_inbox_tests`, `get_domain_cap`, `set_domain_cap`, `list_linkedin_accounts`, `connect_linkedin` | `sending-setup`, `sender-signatures` |
 | Domains and mailboxes to buy | `list_domains`, `quote_domains`, `buy_domains`, `get_company_details`, `set_company_details`, `get_google_organisation`, `set_google_organisation`, `get_google_admin_login`, `get_microsoft_tenant`, `get_microsoft_admin_login`, `accept_microsoft_agreement`, `leave_microsoft_tenant`, `order_mailboxes`, `list_mailbox_orders`, `cancel_mailbox_order`, `retry_mailbox_order`, `retry_domain`, `publish_dkim`, `set_dmarc`, `release_domain`, `transfer_domain`, `get_domain_dns`, `add_domain_record`, `delete_domain_record`, `set_domain_redirect` | `sending-setup` |
 | Which companies | `list_segments`, `save_segment`, `set_segment_status`, `list_sources`, `save_source`, `set_source_status`, `list_segment_companies`, `list_verdicts`, `save_companies`, `judge_companies` | `segment-design` |
 | Which people | `list_personas`, `save_persona` | `persona-design` |
@@ -88,8 +88,8 @@ first, in one or two lines, and wait for a yes.
 
 - **Spends money**: the paid search and lookup tools, `collect_emails`, `verify_email`,
   `check_address`, `check_employer`, `find_phones`, `check_phone`, `read_page`, `match_person`, `enrich_company`, `look_up_companies`, `map_site`,
-  `order_reviews` and `collect_reviews`, `buy_domains`, `order_mailboxes`, `retry_mailbox_order`,
-  `set_warmup`. What was bought before is kept and answered free: look in the project's data and
+  `order_reviews` and `collect_reviews`, `buy_domains`, `order_mailboxes`, `retry_mailbox_order`.
+  What was bought before is kept and answered free: look in the project's data and
   the cache first (`data-sources`). Each tool's description gives its
   price, and `quote_data` (free) gives the most a data call will cost for so many results; quote
   from them, never from memory. `get_spend` shows what was spent; `get_wallet` the balance, what

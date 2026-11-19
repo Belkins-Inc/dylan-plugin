@@ -15,7 +15,7 @@ it. The pieces:
 | Sender | A person the project writes as: name, title, signature, photo. Mailboxes and LinkedIn accounts belong to a sender. One person on several projects is a shared sender. | `list_senders`, `add_sender`, `update_sender`, `set_sender_photo`, `list_shared_senders`, `add_shared_sender`, `share_sender`, `unshare_sender` |
 | Mailbox | A Google, Microsoft or any SMTP and IMAP mailbox Dylan sends from and reads replies in. | `list_mailboxes`, `connect_mailbox`, `connect_smtp_mailbox`, `update_mailbox` |
 | Domain | A lookalike domain bought for sending, redirecting to the company's site. | `list_domains`, `quote_domains`, `buy_domains`, `order_mailboxes`, `list_mailbox_orders`, `cancel_mailbox_order`, `retry_mailbox_order`, `retry_domain`, `publish_dkim`, `set_dmarc`, `release_domain`, `transfer_domain`, `get_domain_dns`, `add_domain_record`, `delete_domain_record`, `set_domain_redirect` |
-| Warm-up | Notes exchanged with a network of real mailboxes, which keeps the mailbox's reputation up and measures where its mail lands. | `get_warmup`, `set_warmup` |
+| Warm-up | Notes exchanged with a network of real mailboxes, which keeps the mailbox's reputation up and measures where its mail lands. | `get_warmup` |
 | Inbox tests | Notes Dylan sends each week from every mailbox to test mailboxes behind each kind of receiver, and where each landed. | `get_inbox_tests` |
 | LinkedIn account | The sender's own account, for invitations and messages. | `list_linkedin_accounts`, `connect_linkedin` |
 
@@ -156,8 +156,9 @@ and pacing.
   its first two weeks and its full share from about its fifth.
 - **Young domains**: under 60 days old, a mailbox sends at most 30 a day in all and the domain at
   most 40 outreach emails a day across its mailboxes.
-- **Warm-up** is switched on per mailbox with `set_warmup` (paid by the month, the price in the
-  tool's description; ask the person). It writes ordinary notes to a network of real mailboxes,
+- **Warm-up** is always on for every active mailbox, from the organisation's approval: there is no
+  switch. `get_warmup`'s description says whether it is charged and at what price. Pausing a
+  mailbox (`update_mailbox`) stops it. It writes ordinary notes to a network of real mailboxes,
   which open them, answer them and pull them out of spam; where they land tells how the mailbox's
   mail is placed. `get_warmup` shows each mailbox's days, where its notes land (inbox, spam, tabs)
   and whether its outreach is held. A warmed mailbox keeps a few notes a day going as a sensor.
