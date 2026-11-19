@@ -118,8 +118,14 @@ a smaller batch, or a later goal.
 3. Read the skips and fix what can be fixed. What Dylan refuses: a contact on do-not-contact,
    or already live in another strategy (one contact, one live strategy); a segment or persona not in
    the strategy; a catch-all held back by the policy; no usable address and no LinkedIn profile; no
-   template that fits; the company's cap or the persona's cap at the company; no active mailbox
-   among the senders; the month's lead allowance used up.
+   template that fits; the company's cap or the persona's cap at the company; once the strategy
+   has been launched, no sender with the channel the template needs; the month's lead allowance
+   used up.
+   A strategy never launched takes leads whose sender has not connected the channel yet (no
+   LinkedIn account, no mailbox): they are enrolled and marked `channelPending`, show in Leads and
+   in the strategy's Leads and Copy tabs, and their copy is written as for any lead. Launch waits
+   until the sender connects the channel. So never hold enrolment or copy back waiting for an
+   account: enrol, write the copy, and let the person read it while the sender connects.
 4. Then, with the person's yes, enrol for real. Starts are spread over the strategy's spread days,
    and colleagues at one company start some days apart.
 
