@@ -17,7 +17,7 @@ it. The pieces:
 | Domain | A lookalike domain bought for sending, redirecting to the company's site. | `list_domains`, `quote_domains`, `buy_domains`, `order_mailboxes`, `list_mailbox_orders`, `cancel_mailbox_order`, `retry_mailbox_order`, `retry_domain`, `publish_dkim`, `set_dmarc`, `release_domain`, `transfer_domain`, `get_domain_dns`, `add_domain_record`, `delete_domain_record`, `set_domain_redirect` |
 | Warm-up | Notes exchanged with a network of real mailboxes, which keeps the mailbox's reputation up and measures where its mail lands. | `get_warmup` |
 | Inbox tests | Notes Dylan sends each week from every mailbox to test mailboxes behind each kind of receiver, and where each landed. | `get_inbox_tests` |
-| LinkedIn account | The sender's own account, for invitations and messages, and for posts (the `linkedin-posts` guide). | `list_linkedin_accounts`, `connect_linkedin` |
+| LinkedIn account | The sender's own account, for invitations and messages, and for posts (the `linkedin-posts` guide). | `list_linkedin_accounts`, `connect_linkedin`, `invite_linkedin`, `revoke_invite` |
 
 ## 1. Senders
 
@@ -139,6 +139,10 @@ email goes from lookalike domains that redirect to the company's site, a few mai
   a new one never.
 - `connect_linkedin` answers a sign-in link for the person's own LinkedIn account, with the country
   it is used from. Every password goes into that page, never into the chat.
+- When the sender is someone outside the organisation (the client's own salesperson, say),
+  `invite_linkedin` answers a link to send them instead: it names the sender and the country, is
+  good for seven days and is used once; the sender opens it and signs in to their own LinkedIn on
+  the same page. `revoke_invite` ends one sent by mistake or to the wrong person.
 - `list_mailboxes` and `list_linkedin_accounts` show each one's status, sender, limits and today's
   counts. A disconnected mailbox sends and reads nothing until it is connected again with a new
   link; its leads wait, they are not moved.
