@@ -60,6 +60,7 @@ there is: positive answers go cold.
 | The project's set-up | `get_setup`, `skip_setup_step`, `set_time_zone`, `list_people`, `set_owner`, `set_goal` | this one |
 | What the company sells | `get_brief`, `save_brief`, `add_note`, `list_exclusions`, `add_exclusion`, `remove_exclusion`, `add_dnc`, `list_dnc`, `check_dnc`, `ask_question` | `company-brief`, `segment-design` |
 | Senders and channels | `list_senders`, `add_sender`, `update_sender`, `list_sender_images`, `add_sender_image`, `remove_sender_image`, `get_sender_photo`, `set_sender_photo`, `list_shared_senders`, `add_shared_sender`, `share_sender`, `unshare_sender`, `list_mailboxes`, `connect_mailbox`, `connect_smtp_mailbox`, `update_mailbox`, `get_warmup`, `get_inbox_tests`, `get_domain_cap`, `set_domain_cap`, `list_linkedin_accounts`, `connect_linkedin` | `sending-setup`, `sender-signatures` |
+| Posts on LinkedIn | `list_linkedin_pages`, `set_profile_posts`, `schedule_linkedin_posts`, `list_linkedin_posts`, `cancel_linkedin_post` | `linkedin-posts` |
 | Domains and mailboxes to buy | `list_domains`, `quote_domains`, `buy_domains`, `get_company_details`, `set_company_details`, `get_google_organisation`, `set_google_organisation`, `get_google_admin_login`, `get_microsoft_tenant`, `get_microsoft_admin_login`, `accept_microsoft_agreement`, `leave_microsoft_tenant`, `order_mailboxes`, `list_mailbox_orders`, `cancel_mailbox_order`, `retry_mailbox_order`, `retry_domain`, `publish_dkim`, `set_dmarc`, `release_domain`, `transfer_domain`, `get_domain_dns`, `add_domain_record`, `delete_domain_record`, `set_domain_redirect` | `sending-setup` |
 | Which companies | `list_segments`, `save_segment`, `set_segment_status`, `list_sources`, `save_source`, `set_source_status`, `list_segment_companies`, `list_verdicts`, `save_companies`, `judge_companies` | `segment-design` |
 | Which people | `list_personas`, `save_persona` | `persona-design` |
@@ -99,9 +100,10 @@ first, in one or two lines, and wait for a yes.
   `approve_reply`, `retry_reply`, `forward_thread`, `approve_reply_template` (Dylan then answers by
   itself), `book_meeting`, `move_meeting`,
   `cancel_meeting`, `reengage`, `refer`, `replace_address`, `unpause_lead`, `resume_lead`,
-  `enroll_leads` on an active strategy.
+  `enroll_leads` on an active strategy, `schedule_linkedin_posts` (a post goes out under the
+  person's name or their company's), `set_profile_posts`.
 - **Cannot be undone**: `release_domain` (the domain is gone once it expires),
-  `cancel_mailbox_order`, `stop_lead`, `archive_strategy`, `remove_step`, `erase_person` (an admin's act: it forgets a person who asked
+  `cancel_mailbox_order`, `cancel_linkedin_post`, `stop_lead`, `archive_strategy`, `remove_step`, `erase_person` (an admin's act: it forgets a person who asked
   to be forgotten, across the organisation), `add_dnc`, `merge_contacts` (only the person can say two contacts are one
   person).
 

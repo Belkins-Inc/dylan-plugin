@@ -17,7 +17,7 @@ it. The pieces:
 | Domain | A lookalike domain bought for sending, redirecting to the company's site. | `list_domains`, `quote_domains`, `buy_domains`, `order_mailboxes`, `list_mailbox_orders`, `cancel_mailbox_order`, `retry_mailbox_order`, `retry_domain`, `publish_dkim`, `set_dmarc`, `release_domain`, `transfer_domain`, `get_domain_dns`, `add_domain_record`, `delete_domain_record`, `set_domain_redirect` |
 | Warm-up | Notes exchanged with a network of real mailboxes, which keeps the mailbox's reputation up and measures where its mail lands. | `get_warmup` |
 | Inbox tests | Notes Dylan sends each week from every mailbox to test mailboxes behind each kind of receiver, and where each landed. | `get_inbox_tests` |
-| LinkedIn account | The sender's own account, for invitations and messages. | `list_linkedin_accounts`, `connect_linkedin` |
+| LinkedIn account | The sender's own account, for invitations and messages, and for posts (the `linkedin-posts` guide). | `list_linkedin_accounts`, `connect_linkedin` |
 
 ## 1. Senders
 

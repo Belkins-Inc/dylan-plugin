@@ -1,6 +1,6 @@
 {
   "name": "dylan",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Dylan for Claude Code: its method as skills and the dylan command that runs every tool \u2014 research, sourcing, copy, sending and replies.",
   "author": {
     "name": "Dylan",

@@ -63,7 +63,7 @@ from a file, a list one item a line (`excludeDomains=@held.txt`); `name:=@file.j
 | `--pick a,b,c` | only these fields of each row (`a.b` reaches into one) |
 | `--out <file>` | the answer to a file (`.jsonl` one row a line), and one line about it instead |
 | `--input <file>` | the input as a JSON object; fields given after it override it |
-| `--yes` | runs a tool that launches, sends, buys or spends — after the person's yes |
+| `--yes` | runs a tool that launches, sends, buys or spends — after the person's yes; a dry run (`dryRun=true`) changes nothing and needs none |
 
 A refusal is `dylan: <what went wrong>` and `hint: <what to do>`, and when Dylan names more, a
 `details:` line of JSON (which rows of a batch were refused, and each one's problems); do what the
@@ -109,6 +109,19 @@ dylan call save_contacts project=acme --each contacts --from people.csv --out ./
 **Copy for many steps at once.** Write each message's copy as a line of JSON in the shape
 `write_copy` takes (`dylan tool write_copy`), check a sample with `check_copy` first, then send the
 file with `--each messages`.
+
+**LinkedIn posts with images.** A post's images go in as each file's name and its bytes in
+base64 (the `linkedin-posts` skill). Write the posts as a JSON list, each image as its file's path,
+and let a short script read the files into the input; check it with a dry run, show the person,
+and schedule it after their yes.
+
+```sh
+node -e 'const fs=require("fs"),path=require("path");const posts=JSON.parse(fs.readFileSync("./dylan/acme/posts.json","utf8"));for(const p of posts)if(p.images)p.images=p.images.map(f=>({name:path.basename(f),content:fs.readFileSync(f).toString("base64")}));fs.writeFileSync("./dylan/acme/posts-input.json",JSON.stringify({project:"acme",posts}))'
+dylan call schedule_linkedin_posts --input ./dylan/acme/posts-input.json dryRun=true
+dylan call schedule_linkedin_posts --input ./dylan/acme/posts-input.json --yes
+```
+
+One call carries at most 50 posts and 64 MB; split a larger file over several.
 
 **Working over a big answer.** Read it to a file and compute with a short script; bring back the
 figure, not the rows.

@@ -5,7 +5,7 @@ import { fetchWithin, QUICK_MS, TOOL_MS } from './net.ts'
 // Dylan's public API: the same tools as its MCP server, one POST each, the same answers and the
 // same refusals ({ error: { code, message, hint } }).
 
-export const VERSION = '0.1.4'
+export const VERSION = '0.1.5'
 
 /** A JSON Schema, as far as this command line reads one. */
 export type Schema = {

@@ -45,7 +45,7 @@ Options for call:
   --out <file>          write the answer to a file (.json, or .jsonl one row a line) and print
                         one line about it instead
   --yes                 run a tool that launches, sends, buys or spends — only once the
-                        person said yes
+                        person said yes; a dry run (dryRun=true) needs none
 
 Anywhere:
   --server <url>        another Dylan (DYLAN_URL); Dylan's own by default
@@ -182,15 +182,6 @@ async function writeAnswer(path: string, answer: unknown) {
 
 async function call(server: string, name: string, args: string[], flags: Flags) {
   const tool = await toolNamed(server, name)
-  if (tool.annotations.destructiveHint && !flags.yes)
-    throw new DylanError(
-      `${name} launches, sends, buys or spends, so it waits for the person's yes`,
-      'Tell them what it will do and what it costs (dylan tool ' +
-        name +
-        ' gives the price), then run it again with --yes',
-      2,
-      'needs_yes',
-    )
   const base: Record<string, unknown> = {}
   if (flags.input) {
     const parsed = parseJson(await readText(flags.input), flags.input)
@@ -199,6 +190,17 @@ async function call(server: string, name: string, args: string[], flags: Flags) 
     Object.assign(base, parsed)
   }
   Object.assign(base, await assignments(args, tool.inputSchema))
+  // A dry run changes nothing and answers what the call would do — what the person is shown
+  // before their yes — so it needs none.
+  if (tool.annotations.destructiveHint && !flags.yes && base['dryRun'] !== true)
+    throw new DylanError(
+      `${name} launches, sends, buys or spends, so it waits for the person's yes`,
+      'Tell them what it will do and what it costs (dylan tool ' +
+        name +
+        ' gives the price), then run it again with --yes',
+      2,
+      'needs_yes',
+    )
 
   let answer: unknown
   let summary = ''
