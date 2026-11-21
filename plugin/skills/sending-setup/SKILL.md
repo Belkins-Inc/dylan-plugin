@@ -100,12 +100,16 @@ email goes from lookalike domains that redirect to the company's site, a few mai
    - A domain that failed on its way into the organisation's Google or Microsoft organisation goes
      back on its way with `retry_domain` once what `list_domains` says is fixed; nothing is bought
      again. Then retry its failed orders.
-6. A bought domain's DNS is the company's to add to: `get_domain_dns` lists its records (each with
-   its id) and redirects, `add_domain_record` adds one (a site verification, a subdomain pointed
-   somewhere, a subdomain's MX for a service that sends from it, such as a bounce domain, priority
-   10 unless given) and `delete_domain_record` deletes one. The mail setup Dylan keeps (the
-   domain's own MX, SPF, DKIM, DMARC) is marked `sending` and refused either way. `set_domain_redirect` moves the redirect to
-   another site, or removes it with `url: null`.
+6. A bought domain's DNS is the company's: `get_domain_dns` lists its records (each with its id)
+   and redirects, `add_domain_record` adds one of any type but NS (a site verification, a subdomain
+   pointed somewhere, a subdomain's MX for a service that sends from it, such as a bounce domain,
+   an SRV, priority 10 unless given) and `delete_domain_record` deletes one. The mail setup Dylan
+   keeps (the domain's own MX, SPF, DKIM, DMARC) is marked `sending`: change it only when a service
+   asks for it in its own form (a help desk's DKIM key as it shows it, its sender in the SPF) and
+   the person says yes, since a wrong one stops every mailbox on the domain sending. A host keeps
+   one SPF, one DMARC and one key per DKIM selector: delete the old before adding the new, or put
+   both senders into the one SPF. `set_domain_redirect` moves the redirect to another site, or
+   removes it with `url: null`.
 7. Its mail records. Dylan writes MX, SPF and DMARC itself, and DKIM for Microsoft domains.
    - **DKIM for a Google domain** is minted in the organisation's Google Admin console (Apps →
      Google Workspace → Gmail → Authenticate email, Generate new record) — the one step Google gives
