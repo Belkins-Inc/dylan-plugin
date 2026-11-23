@@ -72,7 +72,7 @@ there is: positive answers go cold.
 | Which people | `list_personas`, `save_persona` | `persona-design` |
 | Labels on companies and contacts | `list_labels`, `add_label`, `update_label`, `remove_label`, `apply_label`, `take_off_label` | this one |
 | Finding them | `count_companies`, `search_companies`, `count_people`, `search_people`, `enrich_profile`, `read_page`, `quote_data`, `record_search`, `get_provider_call`, `save_contacts`, `list_contacts` | `sourcing` |
-| Keeping people straight | `list_duplicate_contacts`, `merge_contacts`, `mark_departed`, `check_employer` | `sourcing` |
+| Keeping people straight | `list_duplicate_contacts`, `merge_contacts`, `mark_namesakes`, `mark_departed`, `check_employer` | `sourcing` |
 | Data: which tool, its price, the cache | `look_up_people`, `match_person`, `look_up_companies`, `enrich_company`, `map_site`, `order_reviews`, `check_reviews_order`, `collect_reviews`, `get_cached_person`, `get_cached_company`, `list_cached_people` | `data-sources` |
 | Addresses | `find_emails`, `collect_emails`, `verify_email`, `list_address_checks`, `check_address`, `replace_address` | `email-finding` |
 | Phone numbers | `find_phones`, `list_phones`, `add_phones`, `set_phone`, `check_phone` | `email-finding` |

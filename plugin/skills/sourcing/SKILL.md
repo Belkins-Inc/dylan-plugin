@@ -107,6 +107,9 @@ Decide before spending, and write the reason in one sentence (a note or the hand
   profile, the checked address or the lead further along. When both have a live lead the merge
   stops one: run it with `dryRun` first, and name the lead to stop (the refusal suggests the one
   that has sent less). Save every person with their LinkedIn address so it does not happen again.
+- **Two people of one name** at one company (two profiles, two valid addresses): on the person's
+  word, `mark_namesakes` with how you know. The pair leaves `list_duplicate_contacts`, and
+  `enroll_leads` starts each beside the other. Never merge them: a merge deletes one.
 - **Someone who left the company** (their profile shows another employer, a reply said so):
   `mark_departed` with how you know. No strategy enrols them again; a live lead of theirs is named,
   not stopped (`stop_lead` it if it should end). Where they went is a new contact at the new
