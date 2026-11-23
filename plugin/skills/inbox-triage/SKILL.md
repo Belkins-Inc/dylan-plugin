@@ -92,7 +92,8 @@ many:
    draft's note and, with the person's yes, hold them with `pause_colleagues` (all, or `only` some);
    `unpause_lead` lets each go on later.
 10. **Files and missing text**: `list_attachments` lists the files a lead's email carried (name,
-    type, size), read from its mailbox again. A LinkedIn message stored without its text or files:
+    type, size), read from its mailbox again, then the pictures it shows in place (`inline`): a
+    reply that is only a pasted photo is read through them. A LinkedIn message stored without its text or files:
     `refetch_message` reads it from LinkedIn again.
 
 ## Approval: the person's
