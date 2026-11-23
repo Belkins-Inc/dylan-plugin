@@ -116,6 +116,10 @@ email goes from lookalike domains that redirect to the company's site, a few mai
      no way around. When Dylan asks for it, the organisation's admin generates the record there and
      hands you the TXT value; `publish_dkim` puts it in the domain's DNS, and the admin presses
      Start authentication once Google sees it. `get_domain_dns` shows what is published.
+   - **Another service's DKIM key** (a help desk, a mail platform) goes under the selector the
+     service names, exactly as it gives it — with or without `v=DKIM1;`, since some compare the
+     value they read back: `publish_dkim` with its `selector`, or `add_domain_record`. Google's
+     key under `google` is left as it is.
    - **DMARC** says what receivers do with mail that fails SPF and DKIM. A bought domain starts at
      `none`; once only the company's own outreach goes out from it, raise it to `quarantine` with
      `set_dmarc`. `set_dmarc` with `dryRun: true` is the check: it answers what it would change
