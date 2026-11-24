@@ -7,6 +7,7 @@
     "url": "https://meetdylan.ai"
   },
   "homepage": "https://meetdylan.ai",
+  "license": "MIT",
   "keywords": ["outbound", "sales", "email", "linkedin", "prospecting"],
   "icon": ".claude-plugin/icon.png",
   "privacyPolicyUrl": "https://meetdylan.ai/privacy"
