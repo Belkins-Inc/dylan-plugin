@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url'
 
 import { request, type Schema, type Tool, toolNamed, tools, VERSION, callTool } from './api.ts'
 import { login, logout } from './auth.ts'
+import { fetchAutopilot, formatAutopilot } from './autopilot.ts'
 import { readAll, sendEach, pick } from './bulk.ts'
 import { serverOf } from './config.ts'
 import { DylanError, usage } from './errors.ts'
@@ -22,6 +23,8 @@ Usage:
   dylan login [--no-browser]     sign in in the browser; the organisation is picked there
   dylan logout                   sign out on this machine
   dylan whoami                   who is signed in, and into which organisation
+  dylan autopilot [--project <slug>] [--json]
+                                 read-only daily sweep snapshot for a project
   dylan tools [--json]           every tool: its name, whether it only reads, and its title
   dylan tool <name>              a tool's description and fields
   dylan call <tool> [name=value ...] [options]
@@ -56,6 +59,7 @@ Exit codes: 0 done, 1 Dylan refused or a call failed, 2 the command was wrong.
 
 type Flags = {
   server?: string
+  project?: string
   input?: string
   each?: string
   from?: string
@@ -70,7 +74,7 @@ type Flags = {
   version: boolean
 }
 
-const VALUED = new Set(['server', 'input', 'each', 'from', 'batch', 'pick', 'out'])
+const VALUED = new Set(['server', 'project', 'input', 'each', 'from', 'batch', 'pick', 'out'])
 const SWITCHES = new Set(['all', 'yes', 'json', 'no-browser', 'help', 'version'])
 
 export function parseArgs(argv: string[]) {
@@ -239,7 +243,16 @@ async function call(server: string, name: string, args: string[], flags: Flags) 
 }
 
 /** The commands main knows; the skills' test checks every `dylan …` they show against it. */
-export const COMMANDS = ['login', 'logout', 'whoami', 'tools', 'tool', 'call', 'help'] as const
+export const COMMANDS = [
+  'login',
+  'logout',
+  'whoami',
+  'autopilot',
+  'tools',
+  'tool',
+  'call',
+  'help',
+] as const
 
 export async function main(argv: string[]) {
   const { flags, rest } = parseArgs(argv)
@@ -264,6 +277,15 @@ export async function main(argv: string[]) {
         organisation: string | null
       }
       return out(`${me.email}${me.organisation ? ` in ${me.organisation}` : ''} on ${server}`)
+    }
+    case 'autopilot': {
+      if (args.length > 1)
+        throw usage(
+          'Usage: dylan autopilot [--project <slug>] [--json]',
+          'dylan --help lists options',
+        )
+      const snapshot = await fetchAutopilot(server, flags.project ?? args[0])
+      return out(flags.json ? JSON.stringify(snapshot, null, 2) : formatAutopilot(snapshot))
     }
     case 'tools': {
       const all = await tools(server)

@@ -11,8 +11,8 @@ This repository packages the complete Dylan setup for Claude Code:
 
 - **The `dylan` CLI** — runs every Dylan tool against your account, plus batch workflows a chat
   window cannot hold (CSV imports, paginated JSONL exports, scripted analysis).
-- **15 outbound workflow skills** (plus `using-dylan`) — structured playbooks that Claude reaches
-  for automatically across research, targeting, copywriting, inbox triage, and deliverability.
+- **16 outbound workflow skills** (plus `using-dylan`) — structured playbooks that Claude reaches
+  for automatically across research, targeting, copywriting, inbox triage, daily autopilot, and deliverability.
 
 Learn more at [meetdylan.ai/mcp](https://meetdylan.ai/mcp) or sign in at
 [app.meetdylan.ai](https://app.meetdylan.ai).
@@ -70,7 +70,7 @@ irm https://raw.githubusercontent.com/Belkins-Inc/dylan-plugin/main/install.ps1 
 
 ---
 
-## All 15 outbound skills
+## All 16 outbound skills
 
 Every skill ships inside this plugin (alongside `using-dylan` for CLI patterns) and is loaded by
 Claude automatically as you move through an outbound campaign:
@@ -78,6 +78,7 @@ Claude automatically as you move through an outbound campaign:
 | Phase | Skill | What it drives |
 |---|---|---|
 | **Strategy** | `orientation` | Picks a project, reads live state with `get_brief`, keeps memory with `add_note`, runs `run_sql`, and hands off cleanly |
+| **Strategy** | `autopilot` | Runs the daily autonomous outbound sweep across channel health, wallet headroom, inbox triage, follow-through queues, and pipeline pace |
 | **Strategy** | `company-brief` | Turns your site, deck, pricing, and customer stories into the brief, rules, and exclusions every message draws from |
 | **Strategy** | `segment-design` | Defines target company segments, sizes markets with free counts first, and qualifies companies with copy-ready signals |
 | **Strategy** | `persona-design` | Builds title and exclusion libraries and sets per-company persona ladders and contact caps |
@@ -114,6 +115,7 @@ Claude automatically as you move through an outbound campaign:
 ## Using the `dylan` command directly
 
 ```sh
+dylan autopilot --project acme                # read-only daily outbound sweep snapshot
 dylan tools                                   # list every tool (reads, writes, and guarded actions)
 dylan tool save_companies                     # inspect one tool's input schema
 dylan call list_projects

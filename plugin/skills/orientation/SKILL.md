@@ -63,6 +63,7 @@ there is: positive answers go cold.
 | Job | Tools | Guide |
 | --- | --- | --- |
 | Orientation and memory | `list_projects`, `create_project`, `get_brief`, `get_setup`, `get_health`, `get_dashboard`, `get_spend`, `get_wallet`, `get_behaviour`, `list_tasks`, `open_task`, `close_task`, `add_note`, `ask_question`, `answer_question`, `list_hypotheses`, `add_hypothesis`, `update_hypothesis`, `end_session` | this one |
+| Daily autonomous sweep | `get_brief`, `get_health`, `get_dashboard`, `get_wallet`, `get_warmup`, `get_inbox_tests`, `list_tasks`, `list_drafts`, `list_inbox`, `list_meetings`, `end_session` | `autopilot` |
 | The project's set-up | `get_setup`, `skip_setup_step`, `set_time_zone`, `list_people`, `set_owner`, `set_goal` | this one |
 | What the company sells | `get_brief`, `save_brief`, `add_note`, `list_exclusions`, `add_exclusion`, `remove_exclusion`, `add_dnc`, `list_dnc`, `check_dnc`, `ask_question` | `company-brief`, `segment-design` |
 | Senders and channels | `list_senders`, `add_sender`, `update_sender`, `list_sender_images`, `add_sender_image`, `remove_sender_image`, `get_sender_photo`, `set_sender_photo`, `list_shared_senders`, `add_shared_sender`, `share_sender`, `unshare_sender`, `list_mailboxes`, `connect_mailbox`, `connect_smtp_mailbox`, `update_mailbox`, `get_warmup`, `get_inbox_tests`, `get_domain_cap`, `set_domain_cap`, `list_linkedin_accounts`, `connect_linkedin`, `invite_linkedin`, `revoke_invite` | `sending-setup`, `sender-signatures` |

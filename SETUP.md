@@ -158,6 +158,8 @@ Each line is one ask away; the skill in brackets is what the agent follows.
   leads enrolled, a launch they confirm (`strategy-and-plans`, `copywriting`).
 - **Inbox** — each reply read and labelled, an answer drafted for them to approve, meetings booked
   (`inbox-triage`).
+- **Autopilot** — daily outbound sweep across channel health, wallet runway, inbox triage, due
+  follow-ups, unsettled meetings, and pipeline pace (`autopilot`, `dylan autopilot`).
 - **Results** — what works by segment, persona and step, and what to change (`results-review`).
 - **Work at volume** — CSVs in, every page of a list out to a file, counts across thousands of rows
   without pasting them into the conversation (`using-dylan`).
